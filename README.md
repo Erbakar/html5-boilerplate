@@ -1,9 +1,7 @@
-# <p align="center"><a href='https://github.com/Dugnist/html5-boilerplate'><img width="200" src="http://css-live.ru/wp-content/uploads/2017/06/web1.png" alt="html5-boilerplate" /></a><br/> html5-boilerplate </p>
 
 ### Get started
 
 ```
-  git clone https://github.com/Dugnist/html5-boilerplate.git my_project
   cd my_project
   npm i
   npm start
@@ -31,6 +29,4 @@ Don't forget add to index.html this line:
 - Include all you needed html meta tags.
 - ES6 and browserify syntax support. (require, arrow func, let const etc...).
 
-### 2020 updates
 
-- SASS support (thanks @patrikniebur)
