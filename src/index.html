@@ -1,93 +1,194 @@
 <!DOCTYPE html>
-<html lang="en" id="print">
+<html lang="en" id="pdfContainer">
 
 <head itemscope>
-
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Report</title>
-  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/favicon.ico"
+    type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
   <link href="http://test-be.circular-iq.com/app/assets/stylesheets/d3-sankey.css" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="./css/style.css"> -->
-  <link rel="stylesheet" href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css">
+  <!-- <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" /> -->
+  <link href="./css/style.css" rel="stylesheet" />
+
 </head>
 
 <body>
-  <div class="page">
-    <div class="btn-pink">PRELIMINARY REPORT</div>
-    <div class="row">
-      <div class="col-3">
-        <img onclick="generateReport()"
-          src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/logo.png" alt="logo">
+  <div id="app">
+    <div class="page">
+      <div class="btn-pink">PRELIMINARY REPORT</div>
+      <div class="row">
+        <div class="col-3">
+          <img onclick="generateReport()"
+            src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/logo.png" alt="logo">
+        </div>
+        <div class="col-9">
+          <h1>{{name}}</h1>
+          <ul>
+            <li><span>Company name</span> <strong>{{company}}</strong></li>
+            <li><span>Business level</span> <strong>{{businessLevel}}</strong></li>
+            <li><span>Created by</span> <strong>{{createdby}}</strong></li>
+            <li><span>Time period</span> <strong>{{timePeriodStart}} - {{timePeriodEnd}}</strong></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-9">
-        <h1>Circular Transition Indicators</h1>
-        <ul>
-          <li><span>Company name</span> <strong>ACME</strong></li>
-          <li><span>Business level</span> <strong>Product Group X</strong></li>
-          <li><span>Created by</span> <strong>Louise Crawford</strong></li>
-          <li><span>Time period</span> <strong>01/01/2018 - 31/12/2018</strong></li>
-        </ul>
+      <div class="row shadow steps">
+        <div class="col" v-bind:class="{ active: steps.step1 }">
+          <strong>STEP 1
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Define the scope</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step2 }">
+          <strong>STEP 2
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Define the indicators</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step3 }">
+          <strong>STEP 3
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Collect data</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step4 }">
+          <strong>STEP 4
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Calculate</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step5 }">
+          <strong>STEP 5
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Analyze</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step6 }">
+          <strong>STEP 6
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Prioritize</span>
+        </div>
+        <div class="col" v-bind:class="{ active: steps.step7 }">
+          <strong>STEP 7
+            <i class="check">&#10003;</i>
+          </strong>
+          <span>Apply</span>
+        </div>
       </div>
-    </div>
-    <div class="row shadow steps">
-      <div class="col active">
-        <strong>STEP 1 
-          <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="#00b140" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-          </svg>
-        </strong> 
-        <span>Define the scope</span>
+      <div class="flow row">
+        <div class="col">
+          <div class="item active">
+            <div class="blue">
+              <strong>Close the loop</strong>
+              <span>This indicator module provides insights on resource use efficiency.</span>
+            </div>
+            <ul class="shadow">
+              <li><em class="check">&#10003;</em> % circular inflow</li>
+              <li><em class="check">&#10003;</em> % circular outflow</li>
+              <li><em class="check">&#10003;</em> % energy</li>
+            </ul>
+          </div>
+          <div class="item" v-bind:class="{ active: optimizeTheLoop }">
+            <div class="blue">
+              <strong>Optimize the loop <label class="slide"><em></em></label> </strong>
+              <span>This indicator module provides insights on resource use efficiency.</span>
+            </div>
+            <ul class="shadow">
+              <li><em class="check">&#10003;</em> % critical materials</li>
+              <li><em class="check">&#10003;</em> % recovery type</li>
+            </ul>
+          </div>
+          <div class="item" v-bind:class="{ active: valueTheLoop }">
+            <div class="blue">
+              <strong>Value the loop <label class="slide"><em></em></label> </strong>
+              <span>This indicator module illustrates the added business value of your company’s circular material
+                flows.</span>
+            </div>
+            <ul class="shadow">
+              <li><em class="check">&#10003;</em> Circular Material Productivity</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="col active">
-        <strong>STEP 2
-          <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="#00b140" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-          </svg>
-        </strong>
-        <span>Define the indicators</span>
+      <div class="row">
+        <div class="col">
+          <div class="shadow item priorit">
+            <strong>{{priorityInflow.text}}</strong>
+            <ul class="list">
+              <li v-for="(item, index) in priorityInflow.list" :key="item.name"> <b>{{ index +1 }}.  {{item.name}}</b> {{item.value}} kg. </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="shadow item priorit">
+            <strong>{{priorityOutflow.text}}</strong>
+            <ul class="list">
+              <li v-for="(item, index) in priorityOutflow.list" :key="item.name"> <b>{{ index +1 }}.  {{item.name}}</b> {{item.value}} kg. </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="shadow item note">
+            <strong>{{excludedText.head}}</strong>
+            <span>{{excludedText.text}}</span>
+          </div>
+        </div>
       </div>
-      <div class="col active">
-        <strong>STEP 3
-          <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="#00b140" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-          </svg>
-        </strong>
-        <span>Collect data</span>
+      <h2>Your circular performance</h2>
+      <div class="info-box item">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-1">
+                <div class="info-icon">&#8520;</div>
+              </div>
+              <div class="col-11">
+                <span>{{performanceNote1}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <span>{{performanceNote2}}</span>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <strong>STEP 4</strong>
-        <span>Calculate</span>
+      <div class="row">
+        <div class="col">
+          <div class="item sankey">
+            <div style="display: block;width: 650px;height: 250px;margin-left: 75px">
+              <div id="unit-circularity-chart" data-inflow="35" data-outflow="65"></div>
+            </div>
+            <table style="margin:0px;border:none">
+              <tbody style="background:none;-webkit-box-shadow: none;-moz-box-shadow: none; box-shadow: none;">
+                <tr style="border:none">
+                  <td style="padding:0px 75px;font-size:10px;width:360px;text-align:left;">Total mass of inflow <b>{{sankey.totalInflow}} kg</b></td>
+                  <td style="padding:0px 75px;font-size:10px;width:360px;text-align:right;">Total mass of outflow <b>{{sankey.totalOutflow}} kg</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <strong>STEP 5</strong>
-        <span>Analyze</span>
-      </div>
-      <div class="col">
-        <strong>STEP 6</strong>
-        <span>Prioritize</span>
-      </div>
-      <div class="col">
-        <strong>STEP 7</strong>
-        <span>Apply</span>
+      <div class="info-box item" v-if="performanceNote3"> 
+        <div class="info-icon">&#8520;</div>
+        <span>{{performanceNote3}}</span>
       </div>
     </div>
   </div>
-  <div class="page-footer-space"></div>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-  <!-- <script type="text/javascript" src="http://test-be.circular-iq.com/app/assets/javascript/d3-sankey.js"></script> -->
+  <script src="http://test-be.circular-iq.com/app/assets/javascript/d3-sankey.js"></script>
+
   <script src="./js/app.js"></script>
 
 </body>
