@@ -11,9 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,900&display=swap" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="http://test-be.circular-iq.com/app/assets/stylesheets/d3-sankey.css" rel="stylesheet" />
-    <!-- <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" /> -->
-    <link href="./css/style.css" rel="stylesheet" />
+    <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/d3-sankey.css" rel="stylesheet" />
+    <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" />
+    <!-- <link href="./css/style.css" rel="stylesheet" /> -->
 
 </head>
 
@@ -26,60 +26,60 @@
                     <img src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/logo.png" alt="logo">
                 </div>
                 <div class="col-9">
-                    <h1>{{name}}</h1>
+                    <h1>{{mainPage.name}}</h1>
                     <ul>
-                        <li><span>Company name</span> <strong>{{company}}</strong></li>
-                        <li><span>Business level</span> <strong>{{businessLevel}}</strong></li>
-                        <li><span>Created by</span> <strong>{{createdby}}</strong></li>
-                        <li><span>Time period</span> <strong>{{timePeriodStart}} - {{timePeriodEnd}}</strong></li>
+                        <li><span>Company name</span> <strong>{{mainPage.company}}</strong></li>
+                        <li><span>Business level</span> <strong>{{mainPage.businessLevel}}</strong></li>
+                        <li><span>Created by</span> <strong>{{mainPage.createdby}}</strong></li>
+                        <li><span>Time period</span> <strong>{{mainPage.timePeriodStart}} - {{mainPage.timePeriodEnd}}</strong></li>
                     </ul>
                 </div>
             </div>
             <div class="row shadow steps">
-                <div class="col" v-bind:class="{ active: steps.step1 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step1 }">
                     <strong>STEP 1
             <i class="check">&#10003;</i>
           </strong>
                     <span>Define the scope</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step2 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step2 }">
                     <strong>STEP 2
             <i class="check">&#10003;</i>
           </strong>
                     <span>Define the indicators</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step3 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step3 }">
                     <strong>STEP 3
             <i class="check">&#10003;</i>
           </strong>
                     <span>Collect data</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step4 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step4 }">
                     <strong>STEP 4
             <i class="check">&#10003;</i>
           </strong>
                     <span>Calculate</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step5 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step5 }">
                     <strong>STEP 5
             <i class="check">&#10003;</i>
           </strong>
                     <span>Analyze</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step6 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step6 }">
                     <strong>STEP 6
             <i class="check">&#10003;</i>
           </strong>
                     <span>Prioritize</span>
                 </div>
-                <div class="col" v-bind:class="{ active: steps.step7 }">
+                <div class="col" v-bind:class="{ active: mainPage.steps.step7 }">
                     <strong>STEP 7
             <i class="check">&#10003;</i>
           </strong>
                     <span>Apply</span>
                 </div>
             </div>
-            <div class="flow row">
+            <div class="flow row mb-3">
                 <div class="col">
                     <div class="item active">
                         <div class="blue">
@@ -92,7 +92,7 @@
                             <li><em class="check">&#10003;</em> % energy</li>
                         </ul>
                     </div>
-                    <div class="item" v-bind:class="{ active: optimizeTheLoop }">
+                    <div class="item" v-bind:class="{ active: mainPage.optimizeTheLoop }">
                         <div class="blue">
                             <strong>Optimize the loop <label class="slide"><em></em></label> </strong>
                             <span>This indicator module provides insights on resource use efficiency.</span>
@@ -102,7 +102,7 @@
                             <li><em class="check">&#10003;</em> % recovery type</li>
                         </ul>
                     </div>
-                    <div class="item" v-bind:class="{ active: valueTheLoop }">
+                    <div class="item" v-bind:class="{ active: mainPage.valueTheLoop }">
                         <div class="blue">
                             <strong>Value the loop <label class="slide"><em></em></label> </strong>
                             <span>This indicator module illustrates the added business value of your company’s circular material
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <br>
+
             <div class="row">
                 <!-- <div class="col">
                     <div class="shadow item priorit">
@@ -134,8 +134,8 @@
                 </div> -->
                 <div class="col">
                     <div class="shadow item note">
-                        <strong>{{excludedText.head}}</strong>
-                        <span>{{excludedText.text}}</span>
+                        <strong>{{mainPage.excludedText.head}}</strong>
+                        <span>{{mainPage.excludedText.text}}</span>
                     </div>
                 </div>
             </div>
@@ -148,12 +148,12 @@
                                 <div class="info-icon">&#8520;</div>
                             </div>
                             <div class="col-11">
-                                <span>{{performanceNote1}}</span>
+                                <span>{{mainPage.performanceNote1}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <span>{{performanceNote2}}</span>
+                        <span>{{mainPage.performanceNote2}}</span>
                     </div>
                 </div>
             </div>
@@ -163,31 +163,33 @@
                         <div class="sankey" id="unit-circularity-chart" data-inflow="50" data-outflow="50"></div>
                         <div class="row">
                             <div class="col-10 offset-1">
-                                <span style="float: left;">Total mass of inflow <b>{{sankey.totalInflow}} kg</b></span>
-                                <span style="float: right;">Total mass of outflow <b>{{sankey.totalOutflow}} kg</b></span>
+                                <span style="float: left;">Total mass of inflow <b>{{mainPage.sankey.totalInflow}} kg</b></span>
+                                <span style="float: right;">Total mass of outflow <b>{{mainPage.sankey.totalOutflow}} kg</b></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
-            <div class="info-box item" v-if="performanceNote3">
+            <div class="info-box item" v-if="mainPage.performanceNote3">
                 <div class="info-icon">&#8520;</div>
-                <span>{{performanceNote3}}</span>
+                <span>{{mainPage.performanceNote3}}</span>
             </div>
         </div>
+
+
         <div class="page">
             <h2>Inflow details</h2>
             <div class="info-box item">
                 <div class="info-icon">&#8520;</div>
-                <span>{{inflowDetailNote}}</span>
+                <span>{{inflowDetails.inflowDetailNote}}</span>
             </div>
-            <div class="row" style="margin-bottom: 20px;">
+            <div class="row mb-3">
                 <div class="col">
                     <div class="item shadow">
                         <strong>Breakdown of mass</strong>
                         <div class="tower-chart">
-                            <div class="row ci" :style="{ height: 20 + item.value + 'px' }" v-for="item in BreakdownOfMass">
+                            <div class="row ci" :style="{ height: 20 + item.value + 'px' }" v-for="item in inflowDetails.BreakdownOfMass">
                                 <div class="col-9">
                                     <div>{{item.name}}</div>
                                 </div>
@@ -203,7 +205,7 @@
                     <div class="item shadow">
                         <strong>Largest inflow</strong>
                         <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in LargestInflow">
+                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.LargestInflow">
                                 <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
                                 <div class="col-8">
                                     <ul>
@@ -216,12 +218,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 20px;">
+            <div class="row mb-3">
                 <div class="col">
                     <div class="item shadow">
                         <strong>Most circular inflow</strong>
                         <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in MostCircularInflow">
+                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.MostCircularInflow">
                                 <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
                                 <div class="col-8">
                                     <ul>
@@ -237,7 +239,7 @@
                     <div class="item shadow">
                         <strong>Most linear inflow</strong>
                         <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in MostLinearInflow">
+                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.MostLinearInflow">
                                 <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
                                 <div class="col-8">
                                     <ul>
@@ -251,20 +253,20 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col">
                     <div class="item shadow">
                         <strong>Critical Inflow</strong>
                         <div class="otl">
                             <div class="row">
                                 <div class="col-8">
-                                    <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{criticalInflow.massInflow}} Kg</strong></div>
-                                    <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{criticalInflow.totalInflow}} Kg</strong></div>
+                                    <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{inflowDetails.criticalInflow.massInflow}} Kg</strong></div>
+                                    <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{inflowDetails.criticalInflow.totalInflow}} Kg</strong></div>
                                 </div>
 
                                 <div class="col-3" style="position: relative;">
                                     <div class="defult-value"><strong>X 100</strong></div>
-                                    <div class="percent-value">{{criticalInflow.percent}}%</div>
+                                    <div class="percent-value">{{inflowDetails.criticalInflow.percent}}%</div>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +278,7 @@
                             <div class="col-1">
                                 <div class="info-icon">&#8520;</div>
                             </div>
-                            <div class="col-10"> <span>{{inflowDetailNote}}</span></div>
+                            <div class="col-10"> <span>{{inflowDetails.inflowDetailNote}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -286,7 +288,7 @@
         <div class="page">
             <h2>Inflow details</h2>
             <div class="info-box item">
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col">
                         <div class="row">
                             <div class="col-1">
@@ -303,7 +305,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col">
                     <div class="item shadow">
                         <strong>Breakdown of mass</strong>
@@ -319,12 +321,9 @@
                                         <span><b> {{outflowDetails.bom.linearOutflowPercent}}%</b>{{outflowDetails.bom.linearOutflowValue}}kg</span>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="row" style="position: relative;">
-                                        <img class="line-green" src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/line-blue.png" alt="">
-                                        <img class="line-blue" src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/line-green.png" alt="">
-
-                                    </div>
+                                <div class="col" style="position: relative;">
+                                    <img class="line-green" src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/line-green.png" alt="">
+                                    <img class="line-blue" src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/line-blue.png" alt="">
                                 </div>
                                 <div class="col">
                                     <div class="chart-item green" :style="{ height: 50 + outflowDetails.bom.actualRecoveryPercent + 'px' }">
@@ -357,8 +356,8 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
+
+            <div class="row mb-3">
                 <div class="col">
                     <div class="item shadow">
                         <strong>Most circular outflow </strong>
@@ -392,11 +391,117 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="item shadow">
+
+            <div class="item shadow pie-box mb-3">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-5">
                         <strong>Recovery Type</strong>
+                        <div class="pie-table">
+                            <div v-for="(item , index) in outflowDetails.recoveryType">
+                                <span>{{item.name}}</span>
+                                <strong>{{item.value}} Kg</strong>
+                                <b v-if="index + 1 !== outflowDetails.recoveryType.length"> +</b>
+                                <b v-else> &nbsp; </b>
+                            </div>
+                            <div class="total"><span>Total mass (in KG)</span> <strong>{{outflowDetails.recoveryTypeTotalMass}} KG</strong></div>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="page">
+            <h2>Optimize the loop</h2>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="item shadow">
+                        <strong>Critical Inflow</strong>
+                        <div class="otl">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{inflowDetails.criticalInflow.massInflow}} Kg</strong></div>
+                                    <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{inflowDetails.criticalInflow.totalInflow}} Kg</strong></div>
+                                </div>
+
+                                <div class="col-3" style="position: relative;">
+                                    <div class="defult-value"><strong>X 100</strong></div>
+                                    <div class="percent-value">{{inflowDetails.criticalInflow.percent}}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item shadow mb-3">
+                <strong>Critical Materials</strong>
+                <table class="table mt-3">
+                    <thead>
+                        <tr style="font-size: 9px; text-align: center;">
+                            <th scope="col" style="width: 30%; text-align: left">NAME</th>
+                            <th scope="col">MASS(Kg)</th>
+                            <th scope="col">Virgin Renewable(%)</th>
+                            <th scope="col">Non-Virgin Renewable(%)</th>
+                            <th scope="col">Virgin Non-renewable(%)</th>
+                            <th scope="col">Non-virgin Non-renewable(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size: 9px; text-align: center;" v-for="item in optimizeTheLoop.criticalMaterials">
+                            <th style="width: 30%; text-align: left; position: relative;"> <span v-if="item.critical" class="critical">CRITICAL</span> <span class="focus-flow" v-if="item.focusFlow">FOCUS FLOW</span> {{item.name}}</th>
+                            <td>{{item.mass}}Kg</td>
+                            <td>{{item.virginRenewable}}</td>
+                            <td>{{item.nonVirginRenewable}}</td>
+                            <td>{{item.virginNonRenewable}}</td>
+                            <td>{{item.nonVirginNonRenewable}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="item shadow">
+                        <strong>Circular Material Productivity</strong>
+                        <div class="otl">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="line clearfix"><span>Revenue</span><strong>{{optimizeTheLoop.circularMaterialProductivity.revenue}} €</strong></div>
+                                    <div class="line clearfix"><span>Total mass of linear inflow</span><strong>{{optimizeTheLoop.circularMaterialProductivity.totalMass}} Kg</strong></div>
+                                </div>
+
+                                <div class="col-3" style="position: relative;">
+                                    <div class="defult-value"><strong>X 100</strong></div>
+                                    <div class="percent-value">{{optimizeTheLoop.circularMaterialProductivity.percent}} <small>€/Kg</small> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="item shadow">
+                        <strong>Renewable Energy </strong>
+                        <div class="otl">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="line clearfix"><span>Renewable Energy </span><strong>{{optimizeTheLoop.renewableEnergy.renewable}} kWh</strong></div>
+                                    <div class="line clearfix"><span>Total Energy Consumption: </span><strong>{{optimizeTheLoop.renewableEnergy.totalEnergy}} kWh</strong></div>
+                                </div>
+
+                                <div class="col-3" style="position: relative;">
+                                    <div class="defult-value"><strong>X 100</strong></div>
+                                    <div class="percent-value">{{optimizeTheLoop.renewableEnergy.percent}}% </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,8 +514,8 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-    <script src="http://test-be.circular-iq.com/app/assets/javascript/d3-sankey.js"></script>
-
+    <script src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/d3-sankey.js"></script>
+    <!-- <script src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/app.js"></script> -->
     <script src="./js/app.js"></script>
     <div class="download" onclick="generateReport()"><img src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/tree.png" alt=""> Generate Report</div>
 
