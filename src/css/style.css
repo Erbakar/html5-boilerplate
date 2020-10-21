@@ -11,6 +11,12 @@ body {
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
+a,
+a:hover {
+    text-decoration: none;
+    color: #1c195b;
+}
+
 .item {
     padding: 10px;
     border-radius: 5px;

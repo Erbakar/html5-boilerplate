@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,900&display=swap" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/d3-sankey.css" rel="stylesheet" />
-    <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" />
-    <!-- <link href="./css/style.css" rel="stylesheet" /> -->
+    <!-- <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" /> -->
+    <link href="./css/style.css" rel="stylesheet" />
 
 </head>
 
@@ -42,42 +42,43 @@
           </strong>
                     <span>Define the scope</span>
                 </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step2 }">
+                <a href="#step2" class="col" v-bind:class="{ active: mainPage.steps.step2 }">
                     <strong>STEP 2
             <i class="check">&#10003;</i>
           </strong>
                     <span>Define the indicators</span>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step3 }">
+                </a>
+                <a href="#step3" class="col" v-bind:class="{ active: mainPage.steps.step3 }">
                     <strong>STEP 3
             <i class="check">&#10003;</i>
           </strong>
                     <span>Collect data</span>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step4 }">
+                </a>
+                <a href="#step4" class="col" v-bind:class="{ active: mainPage.steps.step4 }">
                     <strong>STEP 4
             <i class="check">&#10003;</i>
           </strong>
                     <span>Calculate</span>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step5 }">
+                </a>
+
+                <a href="#step5" class="col" v-bind:class="{ active: mainPage.steps.step5 }">
                     <strong>STEP 5
             <i class="check">&#10003;</i>
           </strong>
                     <span>Analyze</span>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step6 }">
+                </a>
+                <a href="#step6" class="col" v-bind:class="{ active: mainPage.steps.step6 }">
                     <strong>STEP 6
             <i class="check">&#10003;</i>
           </strong>
                     <span>Prioritize</span>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step7 }">
+                </a>
+                <a href="#step7" class="col" v-bind:class="{ active: mainPage.steps.step7 }">
                     <strong>STEP 7
             <i class="check">&#10003;</i>
           </strong>
                     <span>Apply</span>
-                </div>
+                </a>
             </div>
             <div class="flow row mb-3">
                 <div class="col">
@@ -176,8 +177,7 @@
                 <span>{{mainPage.performanceNote3}}</span>
             </div>
         </div>
-
-        <div class="page" v-if="mainPage.steps.step2">
+        <div id="step2" class="page" v-if="mainPage.steps.step2">
             <h2>Inflow details</h2>
             <div class="info-box item">
                 <div class="info-icon">&#8520;</div>
@@ -283,8 +283,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="page" v-if="mainPage.steps.step3">
+        <div id="step3" class="page" v-if="mainPage.steps.step3">
             <h2>Outflow details</h2>
             <div class="info-box item">
                 <div class="row mb-3">
@@ -415,7 +414,7 @@
 
 
         </div>
-
+        <div id="step4"></div>
         <div class="page" v-if="mainPage.steps.step4">
             <h2>Optimize the loop</h2>
             <div class="row mb-3">
@@ -503,8 +502,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="page" v-if="mainPage.steps.step5">
+        <div id="step5" class="page" v-if="mainPage.steps.step5">
             <h2>Step 5</h2>
             <div class="item shadow" style="padding-bottom: 0;">
                 <strong>inflow analysis</strong>
@@ -595,8 +593,7 @@
             </div>
 
         </div>
-
-        <div class="page" v-if="mainPage.steps.step6">
+        <div id="step6" class="page" v-if="mainPage.steps.step6">
             <h2>Step 6 - Inflow</h2>
             <div class="item shadow mt-3">
                 <strong>Inflow risks</strong>
@@ -725,8 +722,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="page" v-if="mainPage.steps.step6">
             <h2>Step 6 - Outflow</h2>
             <div class="item shadow mt-3">
@@ -856,7 +851,6 @@
                 </div>
             </div>
         </div>
-
         <div class="page" v-if="mainPage.steps.step6">
             <h2>Step 6 - Energy</h2>
             <div class="item shadow mt-3">
@@ -986,7 +980,6 @@
                 </div>
             </div>
         </div>
-
         <div class="page" v-if="step6.criticalMaterialsShow">
             <h2>Step 6 - Critical materials</h2>
             <div class="item shadow mt-3">
@@ -1116,11 +1109,7 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
+        <div id="step7"></div>
         <div class="page " v-if="mainPage.steps.step7" v-for=" (item , index) in step7.smartTarget">
             <h2>S.M.A.R.T Targets = <em>{{index + 1}}</em></h2>
             <strong>Formulate the targets </strong>
@@ -1173,8 +1162,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <script src="https://code.highcharts.com/highcharts.js "></script>
     <script src="https://code.highcharts.com/modules/series-label.js "></script>
