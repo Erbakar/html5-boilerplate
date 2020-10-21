@@ -272,7 +272,7 @@ li strong {
 }
 
 .list li:nth-child(even) {
-    background: #eeeeee;
+    background: #f2f2f2;
 }
 
 .list b {
@@ -374,6 +374,7 @@ li strong {
 
 .chart-list {
     margin-top: 10px;
+    overflow: hidden;
 }
 
 .chart-list strong {
@@ -436,8 +437,8 @@ li strong {
     margin-top: -3px;
 }
 
-.chart-list .row:nth-child(even) {
-    background: #eeeeee;
+.chart-list .row {
+    border-bottom: solid 1px #ccc;
 }
 
 .otl .line {
@@ -483,6 +484,9 @@ li strong {
 
 .otl .percent-value small {
     font-size: 16px;
+    position: absolute;
+    top: 30px;
+    right: -45px;
 }
 
 .v {
@@ -510,7 +514,8 @@ li strong {
 
 .bom-box {
     margin-top: 10px;
-    height: 200px;
+    overflow: hidden;
+    position: relative;
 }
 
 .bom-box .chart-item {
@@ -518,24 +523,18 @@ li strong {
     z-index: 3;
     border-radius: 0;
     height: 50px;
-    text-align: center;
 }
 
 .bom-box .chart-item span {
     font-weight: 600;
-    line-height: 12px;
+    font-size: 10px;
+    line-height: 10px;
     top: 35%;
     color: #1c195b;
-    width: 60%;
+    width: 100%;
     float: left;
-    text-align: center;
     margin-bottom: 5px;
     position: relative;
-}
-
-.bom-box .chart-item span:last-child {
-    font-size: 8px;
-    width: 40%;
 }
 
 .bom-box .chart-item span b {
@@ -545,12 +544,138 @@ li strong {
     margin: 2px 0 0;
 }
 
-.bom-box .green {
-    background: #b7cf6f;
+.bom-box .green-left {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#9ace00+5,b7cf6f+8 */
+    background: #e1e2e1;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #e1e2e1 15%, #f0f0f0 15%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e1e2e1 15%, #f0f0f0 15%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e1e2e1 15%, #f0f0f0 15%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#9ace00', endColorstr='#b7cf6f', GradientType=1);
+    /* IE6-9 */
+    padding-left: 5px;
 }
 
-.bom-box .turquoise {
-    background: #84d7cf;
+.bom-box .green-right {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#9ace00+5,b7cf6f+8 */
+    background: #e1e2e1;
+    /* Old browsers */
+    background: -moz-linear-gradient(right, #e1e2e1 15%, #f0f0f0 15%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(right, #e1e2e1 15%, #f0f0f0 15%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to left, #e1e2e1 15%, #f0f0f0 15%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#9ace00', endColorstr='#b7cf6f', GradientType=1);
+    /* IE6-9 */
+    padding-right: 5px;
+    text-align: right;
+    position: relative;
+}
+
+.bom-box .turquoise-left {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00d6c0+0,84d7cf+8 */
+    background: #c0e4e0;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #83c9c1 15%, #c0e4e0 15%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #83c9c1 15%, #c0e4e0 15%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #83c9c1 15%, #c0e4e0 15%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00d6c0', endColorstr='#84d7cf', GradientType=1);
+    /* IE6-9 */
+    padding-left: 5px;
+    position: relative;
+}
+
+.bom-box .green-right:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    height: 10px;
+    width: 100%;
+    background: url('https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/right-bottom.png');
+}
+
+.line-left {
+    position: absolute;
+    z-index: 4;
+    top: 122px;
+    left: 0;
+    content: "";
+    height: 10px;
+    width: 80%;
+    background: url('https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/line-left.png') right center no-repeat;
+}
+
+.bom-box .turquoise-right {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00d6c0+0,84d7cf+8 */
+    background: #c0e4e0;
+    /* Old browsers */
+    background: -moz-linear-gradient(right, #83c9c1 15%, #c0e4e0 15%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(right, #83c9c1 15%, #c0e4e0 15%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to left, #83c9c1 15%, #c0e4e0 15%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00d6c0', endColorstr='#84d7cf', GradientType=1);
+    /* IE6-9 */
+    padding-right: 5px;
+    text-align: right;
+    position: relative;
+}
+
+.bom-box .left {
+    float: left;
+    width: 47%;
+}
+
+.bom-box .right {
+    float: right;
+    width: 47%;
+}
+
+.bom-box .middle-line {
+    float: left;
+    width: 6%;
+}
+
+.bom-box .middle-line span {
+    text-align: center;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 10px;
+    top: 45%;
+    color: #1c195b;
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.tower-text {
+    text-indent: -20px;
+    white-space: nowrap;
+    -ms-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.bom-box .middle-line .top {
+    background: #83c9c1;
+    height: 50px;
+}
+
+.bom-box .middle-line .bottom {
+    background: #e1e2e1;
+    height: 50px;
 }
 
 .bom-box .line-blue,
@@ -559,29 +684,35 @@ li strong {
     right: -15px;
     left: -15px;
     height: 200px;
-    width: 140%;
+    width: 126%;
 }
 
 .bom-box .line-green {
     z-index: 2;
     opacity: .3;
+    height: 100px;
+    top: 0;
 }
 
 .bom-box .line-blue {
     z-index: 1;
-    opacity: .5;
+    opacity: .4;
+    bottom: 0;
+    height: 100px;
+    background: #84d7cf;
 }
 
 .triple ul li:nth-child(1) {
-    background: #9ebe3f;
+    background: #83c9c1;
 }
 
 .triple ul li:nth-child(2) {
-    background: #0095c6;
+    background: #e1e2e1;
 }
 
-.triple ul li:nth-child(3) {
-    background: #964fe5;
+.triple ul li:nth-child(2) span,
+.triple ul li:nth-child(2) strong {
+    color: #1c195b !important;
 }
 
 .pie-box {
@@ -634,14 +765,14 @@ li strong {
 table span {
     position: absolute;
     top: 0;
-    left: 40px;
+    left: 35px;
     font-size: 5px;
     padding: 1px 4px;
     border-radius: 0 0 6px 6px;
 }
 
 table tr th span:first-child {
-    left: 10px;
+    left: 5px;
 }
 
 table .critical {
@@ -652,4 +783,57 @@ table .critical {
 table .focus-flow {
     background: #cfebf5;
     color: #0095c6;
+}
+
+.table td,
+.table th {
+    padding: 10px 5px;
+}
+
+.question {
+    display: block;
+    border-radius: 0.5rem;
+    border: solid 1px #e8e8ef;
+    padding: 10px;
+}
+
+.question span {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.question .last label {
+    text-align: right;
+}
+
+.question label {
+    display: block;
+    font-weight: 600;
+    font-size: 8px;
+    color: #1c195b;
+}
+
+.question label.big {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.pagination2 {
+    overflow: hidden;
+}
+
+.pagination2 .page-item2 {
+    padding: 2px 0;
+    text-align: center;
+    width: 14.28% !important;
+    display: block;
+    float: left;
+    margin-bottom: 0;
+    color: #1c195b !important;
+}
+
+.pagination2 .page-item2.active {
+    background: #1c195b;
+    color: #fff!important;
 }

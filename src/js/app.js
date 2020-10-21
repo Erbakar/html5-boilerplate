@@ -1,6 +1,7 @@
  new Vue({
      el: "#app",
      data: {
+         pageindex: [1, 2, 3, 4, 5, 6, 7],
          mainPage: {
              name: "Circular Transition Indicators",
              company: "ACME",
@@ -12,10 +13,10 @@
                  step1: true,
                  step2: true,
                  step3: true,
-                 step4: false,
-                 step5: false,
-                 step6: false,
-                 step7: false,
+                 step4: true,
+                 step5: true,
+                 step6: true,
+                 step7: true,
              },
              optimizeTheLoop: true,
              valueTheLoop: false,
@@ -56,20 +57,20 @@
          inflowDetails: {
              inflowDetailNote: "The diagrams below show the circular performance of the inflows of the business level analysed in this assessment. Flows are sorted based on the largest mass, most circular inflow, and most linear inflow. These breakdowns are useful to identify hotspots in your dataset and to determine where your focus areas are.",
              BreakdownOfMass: [
-                 { name: "Virgin", value: 53, weight: 7300 },
-                 { name: "Non-virgin", value: 12, weight: 1200 },
-                 { name: "Renewable", value: 31 },
-                 { name: "Renewable & Non-virgin", value: 4 },
+                 { name: "Virgin", value: 0, weight: 7300 },
+                 { name: "Non-virgin", value: 0, weight: 1200 },
+                 { name: "Renewable", value: 45 },
+                 { name: "Renewable & Non-virgin", value: 55 },
              ],
              LargestInflow: [{
                      name: "Biodegradable Waste",
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "V", value: 50 },
-                         { name: "NV", value: 12 },
-                         { name: "R", value: 13 },
-                         { name: "RNV", value: 25 },
+                         { name: "V", value: 100 },
+                         { name: "NV", value: 0 },
+                         { name: "R", value: 0 },
+                         { name: "RNV", value: 0 },
                      ],
                  },
                  {
@@ -77,10 +78,10 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "V", value: 5 },
-                         { name: "NV", value: 52 },
-                         { name: "R", value: 18 },
-                         { name: "RNV", value: 25 },
+                         { name: "V", value: 100 },
+                         { name: "NV", value: 0 },
+                         { name: "R", value: 0 },
+                         { name: "RNV", value: 0 },
                      ],
                  },
                  {
@@ -88,10 +89,10 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "V", value: 50 },
-                         { name: "NV", value: 12 },
-                         { name: "R", value: 13 },
-                         { name: "RNV", value: 25 },
+                         { name: "V", value: 100 },
+                         { name: "NV", value: 0 },
+                         { name: "R", value: 0 },
+                         { name: "RNV", value: 0 },
                      ],
                  },
                  {
@@ -99,10 +100,10 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "V", value: 50 },
-                         { name: "NV", value: 12 },
-                         { name: "R", value: 13 },
-                         { name: "RNV", value: 25 },
+                         { name: "V", value: 100 },
+                         { name: "NV", value: 0 },
+                         { name: "R", value: 0 },
+                         { name: "RNV", value: 0 },
                      ],
                  },
                  {
@@ -110,10 +111,10 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "V", value: 50 },
-                         { name: "NV", value: 12 },
-                         { name: "R", value: 13 },
-                         { name: "RNV", value: 25 },
+                         { name: "V", value: 100 },
+                         { name: "NV", value: 0 },
+                         { name: "R", value: 0 },
+                         { name: "RNV", value: 0 },
                      ],
                  },
              ],
@@ -241,23 +242,18 @@
              note1: `The diagrams below show the circular performance of the outflows of the business level analysed in this assessment. The percentage of recovery potential reflects your company's ability to design or treat its outflow to ensure materials can be technically recovered. The percentage of actual recovery reflects the amount of materials actually recovered. `,
              note2: `Recovery is not the same as collection, because after collection materials can still end up in landfill or incineration. That's why this indicator requires actual data. The breakdown of mass visually shows the lost potential of the circular outflow due to partial actual recovery. Flows are sorted based on the largest mass, most circular outflow and most linear outflow.`,
              bom: {
-                 recoveryPotentialPercent: 60,
-                 recoveryPotentialValue: 5000,
-                 linearOutflowPercent: 40,
-                 linearOutflowValue: 5000,
-                 actualRecoveryPercent: 25,
-                 actualRecoveryValue: 2500,
-                 linearOutflowPercent2: 75,
-                 linearOutflowValue2: 7500,
+                 recoveryPotentialPercent: 70,
+                 linearOutflowPercent: 30,
+                 circularOutflowPercent: 50,
+                 linearOutflowPercent2: 50,
              },
              largestOutflow: [{
                      name: "Biodegradable Waste",
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 50 },
-                         { name: "AR", value: 12 },
-                         { name: "W", value: 38 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -265,9 +261,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 13 },
-                         { name: "AR", value: 37 },
-                         { name: "W", value: 50 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -275,9 +270,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 20 },
-                         { name: "AR", value: 40 },
-                         { name: "W", value: 40 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -285,9 +279,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 25 },
-                         { name: "AR", value: 25 },
-                         { name: "W", value: 50 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -295,9 +288,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 50 },
-                         { name: "AR", value: 37 },
-                         { name: "W", value: 13 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -305,9 +297,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 20 },
-                         { name: "AR", value: 40 },
-                         { name: "W", value: 40 },
+                         { name: "Linear Outflow", value: 20 },
+                         { name: "Circular Outflow", value: 80 },
                      ],
                  },
              ],
@@ -316,9 +307,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 100 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 0 },
+                         { name: "Linear Outflow", value: 95 },
+                         { name: "Circular Outflow", value: 5 },
                      ],
                  },
                  {
@@ -326,9 +316,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 100 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 0 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -336,9 +325,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 100 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 0 },
+                         { name: "Linear Outflow", value: 0 },
+                         { name: "Circular Outflow", value: 100 },
                      ],
                  },
                  {
@@ -346,9 +334,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 100 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 0 },
+                         { name: "Linear Outflow", value: 0 },
+                         { name: "Circular Outflow", value: 100 },
                      ],
                  },
                  {
@@ -356,9 +343,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 100 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 0 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
              ],
@@ -367,9 +353,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 20 },
-                         { name: "AR", value: 40 },
-                         { name: "W", value: 40 },
+                         { name: "Linear Outflow", value: 50 },
+                         { name: "Circular Outflow", value: 50 },
                      ],
                  },
                  {
@@ -377,9 +362,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 0 },
-                         { name: "AR", value: 0 },
-                         { name: "W", value: 100 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -387,9 +371,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 20 },
-                         { name: "AR", value: 40 },
-                         { name: "W", value: 40 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -397,9 +380,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 50 },
-                         { name: "AR", value: 37 },
-                         { name: "W", value: 13 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
                  {
@@ -407,9 +389,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "RP", value: 20 },
-                         { name: "AR", value: 40 },
-                         { name: "W", value: 40 },
+                         { name: "Linear Outflow", value: 100 },
+                         { name: "Circular Outflow", value: 0 },
                      ],
                  },
              ],
@@ -431,7 +412,6 @@
              recoveryTypeTotalMass: 10000,
          },
 
-
          optimizeTheLoop: {
              criticalMaterials: [
                  { name: 'Cesium', mass: 15, virginRenewable: 45, nonVirginRenewable: 45, virginNonRenewable: 45, nonVirginNonRenewable: 45, focusFlow: true },
@@ -445,17 +425,191 @@
                  { name: 'Cesium', mass: 15, virginRenewable: 45, nonVirginRenewable: 45, virginNonRenewable: 45, nonVirginNonRenewable: 45 },
              ],
              circularMaterialProductivity: {
-                 revenue: 2700,
-                 totalMass: 10000,
-                 percent: 27,
+                 revenue: 3500,
+                 totalMass: 2750,
+                 percent: 83,
              },
              renewableEnergy: {
-                 renewable: 2700,
-                 totalEnergy: 10000,
-                 percent: 27,
+                 renewable: 3270,
+                 totalEnergy: 8320,
+                 percent: 67,
              }
          },
 
+         step5: {
+             inflowAnalaysis: [
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, linearInflow: '327 - 123', linearInflowResult: 204, total: '1,73' },
+                 { name: 'Cobalt2', mass: '327 - 123', massResult: 204, linearInflow: '1.000 - 756', linearInflowResult: 344, total: '4,73' },
+                 { name: 'Cesium', mass: '1.000 - 756', massResult: 344, linearInflow: '327 - 123', linearInflowResult: 204, total: '1,73' },
+                 { name: 'Cobalt2', mass: '327 - 123', massResult: 204, linearInflow: '1.000 - 756', linearInflowResult: 344, total: '4,73' },
+                 { name: 'Cesium', mass: '1.000 - 756', massResult: 344, linearInflow: '327 - 123', linearInflowResult: 204, total: '1,73' }
+             ],
+             inflowNote: 'The circular inflow of the business unit wbcsd line will increase by 1.73% if all changes above are implemented.',
+             whyCircularInflowValue: 9,
+             whyCircularInflowAnswer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nobis dolore dignissimos ea? Quo aut recusandae delectus perspiciatis. Natus itaque sequi sapiente, ratione a et id odio sint explicabo sit?',
+             expectedInflowAnswer: 'Lorem ipsum  ratione a et id odio sint explicabo sit?',
+             expectedInflowWhyAnswer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+             outflowAnalaysis: [
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, recoveryPotential: '327 - 123', recoveryPotentialResult: 204, actualRecovery: '1.000 - 756', actualRecoveryResult: 344, total: '1,73' },
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, recoveryPotential: '327 - 123', recoveryPotentialResult: 204, actualRecovery: '1.000 - 756', actualRecoveryResult: 344, total: '1,73' },
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, recoveryPotential: '327 - 123', recoveryPotentialResult: 204, actualRecovery: '1.000 - 756', actualRecoveryResult: 344, total: '1,73' },
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, recoveryPotential: '327 - 123', recoveryPotentialResult: 204, actualRecovery: '1.000 - 756', actualRecoveryResult: 344, total: '1,73' },
+                 { name: 'Cesium ', mass: '1.000 - 756', massResult: 344, recoveryPotential: '327 - 123', recoveryPotentialResult: 204, actualRecovery: '1.000 - 756', actualRecoveryResult: 344, total: '1,73' },
+             ],
+             outflowNote: 'The circular inflow of the business unit wbcsd line will increase by 1.73% if all changes above are implemented',
+             whyCircularOutflowValue: 9,
+             whyCircularOutflowAnswer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nobis dolore dignissimos ea? Quo aut recusandae delectus perspiciatis. Natus itaque sequi sapiente, ratione a et id odio sint explicabo sit?',
+             expectedOutflowAnswer: 'Lorem ipsum  ratione a et id odio sint explicabo sit?',
+             expectedOutflowWhyAnswer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+         },
+
+         step6: {
+             inflowRisks: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 7,
+                     valnerability: 2
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
+                     threat: null,
+                     valnerability: null
+                 },
+                 business: {
+                     text: '',
+                     threat: 1,
+                     valnerability: 5
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 3,
+                     valnerability: 4
+                 },
+             },
+             inflowOpportunities: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 business: {
+                     text: '',
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+             },
+             outflowRisks: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 7,
+                     valnerability: 2
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
+                     threat: null,
+                     valnerability: null
+                 },
+                 business: {
+                     text: '',
+                     threat: 1,
+                     valnerability: 5
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 3,
+                     valnerability: 4
+                 },
+             },
+             outflowOpportunities: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 business: {
+                     text: '',
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+             },
+             energyRisks: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 7,
+                     valnerability: 2
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
+                     threat: null,
+                     valnerability: null
+                 },
+                 business: {
+                     text: '',
+                     threat: 1,
+                     valnerability: 5
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 3,
+                     valnerability: 4
+                 },
+             },
+             energyOpportunities: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 business: {
+                     text: '',
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+             },
+             criticalMaterialsShow: true,
+             criticalRisks: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 7,
+                     valnerability: 2
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
+                     threat: null,
+                     valnerability: null
+                 },
+                 business: {
+                     text: '',
+                     threat: 1,
+                     valnerability: 5
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                     threat: 3,
+                     valnerability: 4
+                 },
+             },
+             criticalOpportunities: {
+                 market: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 operational: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+                 business: {
+                     text: '',
+                 },
+                 legal: {
+                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
+                 },
+             },
+         }
 
      },
      methods: {
