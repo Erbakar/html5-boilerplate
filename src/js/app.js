@@ -2,6 +2,7 @@
      el: "#app",
      data: {
          pageindex: [1, 2, 3, 4, 5, 6, 7],
+         alphabet: '',
          mainPage: {
              name: "Circular Transition Indicators",
              company: "ACME",
@@ -252,8 +253,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 60 },
+                         { name: "Circular Outflow", value: 40 },
                      ],
                  },
                  {
@@ -261,8 +262,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 40 },
+                         { name: "Circular Outflow", value: 60 },
                      ],
                  },
                  {
@@ -270,8 +271,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 50 },
+                         { name: "Circular Outflow", value: 50 },
                      ],
                  },
                  {
@@ -279,8 +280,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 70 },
+                         { name: "Circular Outflow", value: 30 },
                      ],
                  },
                  {
@@ -288,8 +289,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 20 },
+                         { name: "Circular Outflow", value: 80 },
                      ],
                  },
                  {
@@ -316,8 +317,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 90 },
+                         { name: "Circular Outflow", value: 10 },
                      ],
                  },
                  {
@@ -325,8 +326,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 0 },
-                         { name: "Circular Outflow", value: 100 },
+                         { name: "Linear Outflow", value: 15 },
+                         { name: "Circular Outflow", value: 85 },
                      ],
                  },
                  {
@@ -334,8 +335,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 0 },
-                         { name: "Circular Outflow", value: 100 },
+                         { name: "Linear Outflow", value: 25 },
+                         { name: "Circular Outflow", value: 75 },
                      ],
                  },
                  {
@@ -343,8 +344,8 @@
                      value: 53,
                      weight: 7300,
                      percent: [
-                         { name: "Linear Outflow", value: 100 },
-                         { name: "Circular Outflow", value: 0 },
+                         { name: "Linear Outflow", value: 35 },
+                         { name: "Circular Outflow", value: 65 },
                      ],
                  },
              ],
@@ -609,48 +610,59 @@
                      text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                  },
              },
-         }
+         },
 
+         step7: {
+             smartTarget: [{
+                 text: 'Kadir Erbakar',
+                 what: ['what first answer ', 'what second answer'],
+                 when: ['when first answer ', 'when second answer'],
+                 who: ['who first answer ', 'who second answer', 'who last answer'],
+                 departments: ['test 1', 'test 2'],
+                 others: ['test 1', 'test 2'],
+                 considerations: ['test 1', 'test 2'],
+             }],
+         }
      },
      methods: {
          delayedShow() {},
      },
      mounted() {
          this.delayedShow();
-
-         Highcharts.chart('container', {
-             chart: {
-                 plotBackgroundColor: null,
-                 plotBorderWidth: null,
-                 plotShadow: false,
-                 type: 'pie'
-             },
-             title: {
-                 text: ''
-             },
-             tooltip: {
-                 pointFormat: ''
-             },
-             accessibility: {
-                 point: {
-                     valueSuffix: '%'
-                 }
-             },
-             plotOptions: {
-                 pie: {
-                     allowPointSelect: false,
-                     cursor: 'pointer',
-                     dataLabels: {
-                         enabled: true,
-                         format: '<b style="font-size:8px">{point.name}</b>: {point.percentage:.1f} %'
+         this.alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+             Highcharts.chart('container', {
+                 chart: {
+                     plotBackgroundColor: null,
+                     plotBorderWidth: null,
+                     plotShadow: false,
+                     type: 'pie'
+                 },
+                 title: {
+                     text: ''
+                 },
+                 tooltip: {
+                     pointFormat: ''
+                 },
+                 accessibility: {
+                     point: {
+                         valueSuffix: '%'
                      }
-                 }
-             },
-             series: [{
-                 colorByPoint: true,
-                 data: this.outflowDetails.recoveryChat,
-             }]
-         });
+                 },
+                 plotOptions: {
+                     pie: {
+                         allowPointSelect: false,
+                         cursor: 'pointer',
+                         dataLabels: {
+                             enabled: true,
+                             format: '<b style="font-size:8px">{point.name}</b>: {point.percentage:.1f} %'
+                         }
+                     }
+                 },
+                 series: [{
+                     colorByPoint: true,
+                     data: this.outflowDetails.recoveryChat,
+                 }]
+             });
 
 
      },

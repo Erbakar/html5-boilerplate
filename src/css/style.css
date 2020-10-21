@@ -120,7 +120,7 @@ img {
     width: 768px;
     margin: 0 auto;
     display: block;
-    height: 1034px;
+    height: 1032px;
     overflow: hidden;
     -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
@@ -836,4 +836,55 @@ table .focus-flow {
 .pagination2 .page-item2.active {
     background: #1c195b;
     color: #fff!important;
+}
+
+.smartTarget {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.smartTarget .item {
+    border: solid 1px #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.smartTarget strong {
+    margin-bottom: 5px;
+}
+
+.smartTarget .child {
+    margin-bottom: 10px;
+    float: right;
+    width: 95%;
+}
+
+.smartTarget em {
+    display: block;
+    float: left;
+    border-radius: 100%;
+    background: #1c195b;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 5px;
+    color: #fff;
+    font-style: normal;
+    z-index: 2;
+}
+
+h2 em {
+    display: inline-block;
+    background: #1c195b;
+    height: 20px;
+    width: 20px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    font-style: normal;
+    z-index: 2;
+    position: relative;
+    top: -2px;
 }

@@ -1121,9 +1121,59 @@
 
 
 
-        <div class="page " v-if="mainPage.steps.step7 ">
-            <h2>Step 7</h2>
+        <div class="page " v-if="mainPage.steps.step7" v-for=" (item , index) in step7.smartTarget">
+            <h2>S.M.A.R.T Targets = <em>{{index + 1}}</em></h2>
+            <strong>Formulate the targets </strong>
+            <div class="item shadow mt-3">
+                <div class="smartTarget clearfix">
+                    <div class="item">
+                        <em>{{index + 1}}</em>
+                        <span>{{item.text}}</span>
+                    </div>
+                    <div class="child">
+                        <strong>Define what needs to happen </strong>
+                        <div class="item" v-for=" (what , a) in item.what">
+                            <em>{{alphabet[a]}}</em>
+                            <span>{{what}}</span>
+                        </div>
+                        <strong>Define when it needs to be happen </strong>
+                        <div class="item" v-for=" (when , b) in item.when">
+                            <em>{{alphabet[b]}}</em>
+                            <span>{{when}}</span>
+                        </div>
+                        <strong>Define who needs to take action </strong>
+                        <div class="item" v-for=" (who , c) in item.who">
+                            <em>{{alphabet[c]}}</em>
+                            <span>{{who}}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Departments to involve </strong>
+                                <div class="item" v-for=" (department , index) in item.departments">
+                                    <em>{{index + 1}}</em>
+                                    <span>{{department}}</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <strong>Other parties to consider </strong>
+                                <div class="item" v-for=" (other , index) in item.others">
+                                    <em>{{index + 1}}</em>
+                                    <span>{{other}}</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <strong>Considerations when executing </strong>
+                                <div class="item" v-for=" (consideration , index) in item.considerations">
+                                    <em>{{index + 1}}</em>
+                                    <span>{{consideration}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </div>
     <script src="https://code.highcharts.com/highcharts.js "></script>
