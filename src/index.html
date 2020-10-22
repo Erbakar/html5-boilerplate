@@ -12,14 +12,14 @@
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,900&display=swap" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/d3-sankey.css" rel="stylesheet" />
-    <!-- <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" /> -->
-    <link href="./css/style.css" rel="stylesheet" />
+    <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" />
+    <!-- <link href="./css/style.css" rel="stylesheet" /> -->
 
 </head>
 
 <body>
     <div id="app">
-        <div class="page" v-if="mainPage.steps.step1">
+        <div id="step1" class="page" v-if="mainPage.steps.step1">
             <div class="btn-pink">PRELIMINARY REPORT</div>
             <div class="row">
                 <div class="col-3">
@@ -37,48 +37,40 @@
             </div>
             <div class="row shadow steps">
                 <div class="col" v-bind:class="{ active: mainPage.steps.step1 }">
-                    <strong>STEP 1
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Define the scope</span>
+                    <a href="#step1"><strong>STEP 1 <i class="check">&#10003;</i> </strong>
+                        <span>Define the scope</span>
+                    </a>
                 </div>
-                <a href="#step2" class="col" v-bind:class="{ active: mainPage.steps.step2 }">
-                    <strong>STEP 2
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Define the indicators</span>
-                </a>
-                <a href="#step3" class="col" v-bind:class="{ active: mainPage.steps.step3 }">
-                    <strong>STEP 3
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Collect data</span>
-                </a>
-                <a href="#step4" class="col" v-bind:class="{ active: mainPage.steps.step4 }">
-                    <strong>STEP 4
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Calculate</span>
-                </a>
-
-                <a href="#step5" class="col" v-bind:class="{ active: mainPage.steps.step5 }">
-                    <strong>STEP 5
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Analyze</span>
-                </a>
-                <a href="#step6" class="col" v-bind:class="{ active: mainPage.steps.step6 }">
-                    <strong>STEP 6
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Prioritize</span>
-                </a>
-                <a href="#step7" class="col" v-bind:class="{ active: mainPage.steps.step7 }">
-                    <strong>STEP 7
-            <i class="check">&#10003;</i>
-          </strong>
-                    <span>Apply</span>
-                </a>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step2 }">
+                    <a href="#step2"> <strong>STEP 2  <i class="check">&#10003;</i></strong>
+                        <span>Define the indicators</span>
+                    </a>
+                </div>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step3 }">
+                    <a href="#step3"><strong>STEP 3 <i class="check">&#10003;</i> </strong>
+                        <span>Collect data</span>
+                    </a>
+                </div>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step4 }">
+                    <a href="#step4"><strong>STEP 4 <i class="check">&#10003;</i> </strong>
+                        <span>Calculate</span>
+                    </a>
+                </div>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step5 }">
+                    <a href="#step5"><strong>STEP 5 <i class="check">&#10003;</i> </strong>
+                        <span>Analyze</span>
+                    </a>
+                </div>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step6 }">
+                    <a href="#step6"> <strong>STEP 6 <i class="check">&#10003;</i> </strong>
+                        <span>Prioritize</span>
+                    </a>
+                </div>
+                <div class="col" v-bind:class="{ active: mainPage.steps.step7 }">
+                    <a href="#step7"> <strong>STEP 7<i class="check">&#10003;</i> </strong>
+                        <span>Apply</span>
+                    </a>
+                </div>
             </div>
             <div class="flow row mb-3">
                 <div class="col">

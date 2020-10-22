@@ -16,8 +16,8 @@ new Vue({
                 step3: true,
                 step4: true,
                 step5: true,
-                step6: true,
-                step7: true,
+                step6: false,
+                step7: false,
             },
             optimizeTheLoop: true,
             valueTheLoop: false,
@@ -473,11 +473,11 @@ new Vue({
                 },
                 operational: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
-                    threat: null,
-                    valnerability: null
+                    threat: 1,
+                    valnerability: 5
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                     threat: 1,
                     valnerability: 5
                 },
@@ -495,7 +495,7 @@ new Vue({
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                 },
                 legal: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
@@ -509,11 +509,11 @@ new Vue({
                 },
                 operational: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
-                    threat: null,
-                    valnerability: null
+                    threat: 1,
+                    valnerability: 5
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                     threat: 1,
                     valnerability: 5
                 },
@@ -531,7 +531,7 @@ new Vue({
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                 },
                 legal: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
@@ -545,11 +545,11 @@ new Vue({
                 },
                 operational: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
-                    threat: null,
-                    valnerability: null
+                    threat: 1,
+                    valnerability: 5
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                     threat: 1,
                     valnerability: 5
                 },
@@ -567,7 +567,7 @@ new Vue({
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                 },
                 legal: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
@@ -582,11 +582,11 @@ new Vue({
                 },
                 operational: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
-                    threat: null,
-                    valnerability: null
+                    threat: 1,
+                    valnerability: 5
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                     threat: 1,
                     valnerability: 5
                 },
@@ -604,7 +604,7 @@ new Vue({
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                 },
                 business: {
-                    text: '',
+                    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. ',
                 },
                 legal: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
@@ -614,14 +614,24 @@ new Vue({
 
         step7: {
             smartTarget: [{
-                text: 'Kadir Erbakar',
-                what: ['what first answer ', 'what second answer'],
-                when: ['when first answer ', 'when second answer'],
-                who: ['who first answer ', 'who second answer', 'who last answer'],
-                departments: ['test 1', 'test 2'],
-                others: ['test 1', 'test 2'],
-                considerations: ['test 1', 'test 2'],
-            }],
+                    text: 'Kadir Erbakar',
+                    what: ['what first answer ', 'what second answer'],
+                    when: ['when first answer ', 'when second answer'],
+                    who: ['who first answer ', 'who second answer', 'who last answer'],
+                    departments: ['test 1', 'test 2'],
+                    others: ['test 1', 'test 2'],
+                    considerations: ['test 1', 'test 2'],
+                },
+                {
+                    text: 'Kadir Erbakar',
+                    what: ['what first answer ', 'what second answer'],
+                    when: ['when first answer ', 'when second answer'],
+                    who: ['who first answer ', 'who second answer', 'who last answer'],
+                    departments: ['test 1', 'test 2'],
+                    others: ['test 1', 'test 2'],
+                    considerations: ['test 1', 'test 2'],
+                }
+            ],
         }
     },
     methods: {
@@ -677,7 +687,8 @@ new Vue({
 function generateReport() {
     hash = window.location.hash.substr(1);
     arHash = hash.split("=");
-    token = arHash[1];
+    // token = arHash[1];
+    token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDMzNTkyMjMsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzMzcwMDIzfQ.6D8mNS3ydddp5R7H3gwKrK0r9FS4tWtJAwrBjZBPtcM';
     var markup = document.getElementById("pdfContainer");
     var parser = markup.outerHTML;
     var data = btoa(unescape(encodeURIComponent(parser)));

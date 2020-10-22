@@ -13,8 +13,8 @@ body {
 
 a,
 a:hover {
-    text-decoration: none;
-    color: #1c195b;
+    text-decoration: none !important;
+    color: #1c195b !important;
 }
 
 .item {
