@@ -2,7 +2,7 @@ $("#target").click(function() {
     hash = window.location.hash.substr(1);
     arHash = hash.split("=");
     // token = arHash[1];
-    token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM2OTc0OTEsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzA4MjkxfQ.uMF61EZIbhdAtLIXBZ9WrNJGjUchz9OrBKYCJXTsedc';
+    token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM3MjQ3NDMsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzM1NTQzfQ.f29o7iND8zNWPSX32zNTzuExtCgnCFMzfOBIftok35A';
     var markup = document.getElementById("pdfContainer");
     var parser = markup.outerHTML;
     var data = btoa(unescape(encodeURIComponent(parser)));
@@ -79,7 +79,7 @@ new Vue({
         getReport() {
             fetch("http://test-be.circular-iq.com/api/cti/unit/1326443b-bf0f-4e52-868f-55ef26872982/reportData", {
                     headers: {
-                        "x-auth-token": 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM3MTQyMTgsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzI1MDE4fQ.QxBsonoqKNzvvVXZI6R329EyE5sEp-E7XG7vhtUBij4',
+                        "x-auth-token": 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM3MjQ3NDMsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzM1NTQzfQ.f29o7iND8zNWPSX32zNTzuExtCgnCFMzfOBIftok35A',
                     },
                     method: "GET",
                 })
