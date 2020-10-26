@@ -460,14 +460,14 @@ li strong {
 
 .otl .line span {
     display: block;
-    font-size: 7px;
+    font-size: 9px;
     float: left;
     width: 80%;
 }
 
 .otl .line strong {
     display: block;
-    font-size: 7px;
+    font-size: 9px;
     float: right;
     text-align: right;
     width: 20%;
@@ -522,6 +522,7 @@ li strong {
     margin-top: 10px;
     overflow: hidden;
     position: relative;
+    padding-bottom: 10px;
 }
 
 .bom-box .chart-item {
@@ -722,7 +723,7 @@ li strong {
 }
 
 .pie-box {
-    height: 240px;
+    height: auto;
     overflow: hidden;
 }
 
@@ -853,6 +854,7 @@ table .focus-flow {
     border: solid 1px #ccc;
     padding: 5px;
     margin-bottom: 10px;
+    min-height: 30px;
 }
 
 .smartTarget strong {
@@ -873,7 +875,7 @@ table .focus-flow {
     height: 20px;
     width: 20px;
     text-align: center;
-    line-height: 20px;
+    line-height: 18px;
     margin-right: 5px;
     color: #fff;
     font-style: normal;

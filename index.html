@@ -16,664 +16,1103 @@
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,900&display=swap" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/d3-sankey.css" rel="stylesheet" />
-    <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" />
-    <!-- <link href="css/style.css" rel="stylesheet" /> -->
+    <!-- <link href="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/style.css" rel="stylesheet" /> -->
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="app">
-        <div id="step1" class="page" v-if="mainPage.steps.step1">
-            <div class="btn-pink">PRELIMINARY REPORT</div>
-            <div class="row">
-                <div class="col-3">
-                    <img src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/logo.png" alt="logo">
-                </div>
-                <div class="col-9">
-                    <h1>{{mainPage.name}}</h1>
-                    <ul>
-                        <li><span>Company name</span> <strong>{{mainPage.company}}</strong></li>
-                        <li><span>Business level</span> <strong>{{mainPage.businessLevel}}</strong></li>
-                        <li><span>Created by</span> <strong>{{mainPage.createdby}}</strong></li>
-                        <li><span>Time period</span> <strong>{{mainPage.timePeriodStart}} - {{mainPage.timePeriodEnd}}</strong></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row shadow steps">
-                <div class="col" v-bind:class="{ active: mainPage.steps.step1 }">
-                    <a href="#step1"><strong>STEP 1 <i class="check">&#10003;</i> </strong>
-                    <span>Define the scope</span>
-                </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step2 }">
-                    <a href="#step2"> <strong>STEP 2  <i class="check">&#10003;</i></strong>
-                        <span>Define the indicators</span>
-                    </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step3 }">
-                    <a href="#step3"><strong>STEP 3 <i class="check">&#10003;</i> </strong>
-                    <span>Collect data</span>
-                </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step4 }">
-                    <a href="#step4"><strong>STEP 4 <i class="check">&#10003;</i> </strong>
-                    <span>Calculate</span>
-                </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step5 }">
-                    <a href="#step5"><strong>STEP 5 <i class="check">&#10003;</i> </strong>
-                    <span>Analyze</span>
-                </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step6 }">
-                    <a href="#step6"> <strong>STEP 6 <i class="check">&#10003;</i> </strong>
-                        <span>Prioritize</span>
-                    </a>
-                </div>
-                <div class="col" v-bind:class="{ active: mainPage.steps.step7 }">
-                    <a href="#step7"> <strong>STEP 7<i class="check">&#10003;</i> </strong>
-                        <span>Apply</span>
-                    </a>
-                </div>
-            </div>
-            <div class="flow row mb-3">
-                <div class="col">
-                    <div class="item active">
-                        <div class="blue">
-                            <strong>Close the loop</strong>
-                            <span>This indicator module provides insights on resource use efficiency.</span>
-                        </div>
-                        <ul class="shadow">
-                            <li><em class="check">&#10003;</em> % circular inflow</li>
-                            <li><em class="check">&#10003;</em> % circular outflow</li>
-                            <li><em class="check">&#10003;</em> % energy</li>
-                        </ul>
+        <div v-if="show">
+            <div id="step1" class="page" v-if="content.mainPage.steps.step1">
+                <div class="btn-pink">PRELIMINARY REPORT</div>
+                <div class="row">
+                    <div class="col-3">
+                        <img src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/logo.png" alt="logo">
                     </div>
-                    <div class="item" v-bind:class="{ active: mainPage.optimizeTheLoop }">
-                        <div class="blue">
-                            <strong>Optimize the loop <label class="slide"><em></em></label> </strong>
-                            <span>This indicator module provides insights on resource use efficiency.</span>
-                        </div>
-                        <ul class="shadow">
-                            <li><em class="check">&#10003;</em> % critical materials</li>
-                            <li><em class="check">&#10003;</em> % recovery type</li>
-                        </ul>
-                    </div>
-                    <div class="item" v-bind:class="{ active: mainPage.valueTheLoop }">
-                        <div class="blue">
-                            <strong>Value the loop <label class="slide"><em></em></label> </strong>
-                            <span>This indicator module illustrates the added business value of your company’s circular material
-            flows.</span>
-                        </div>
-                        <ul class="shadow">
-                            <li><em class="check">&#10003;</em> Circular Material Productivity</li>
+                    <div class="col-9">
+                        <h1>{{content.mainPage.name}}</h1>
+                        <ul>
+                            <li><span>Company name</span> <strong>{{content.mainPage.company}}</strong></li>
+                            <li><span>Business level</span> <strong>{{content.mainPage.businessLevel}}</strong></li>
+                            <li><span>Created by</span> <strong>{{content.mainPage.createdBy}}</strong></li>
+                            <li v-if="content.mainPage.timePeriodStart || content.mainPage.timePeriodEnd"><span>Time
+                                period</span> <strong>{{content.mainPage.timePeriodStart}} -
+                                {{content.mainPage.timePeriodEnd}}</strong></li>
                         </ul>
                     </div>
                 </div>
-            </div>
+                <div class="row shadow steps">
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step1 }">
+                        <a href="#step1"><strong>STEP 1 <i class="check">&#10003;</i> </strong>
+                        <span>Define the scope</span>
+                    </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step2 }">
+                        <a href="#step2"> <strong>STEP 2 <i class="check">&#10003;</i></strong>
+                            <span>Define the indicators</span>
+                        </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step3 }">
+                        <a href="#step3"><strong>STEP 3 <i class="check">&#10003;</i> </strong>
+                        <span>Collect data</span>
+                    </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step4 }">
+                        <a href="#step4"><strong>STEP 4 <i class="check">&#10003;</i> </strong>
+                        <span>Calculate</span>
+                    </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step5 }">
+                        <a href="#step5"><strong>STEP 5 <i class="check">&#10003;</i> </strong>
+                        <span>Analyze</span>
+                    </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step6 }">
+                        <a href="#step6"> <strong>STEP 6 <i class="check">&#10003;</i> </strong>
+                            <span>Prioritize</span>
+                        </a>
+                    </div>
+                    <div class="col" v-bind:class="{ active: content.mainPage.steps.step7 }">
+                        <a href="#step7"> <strong>STEP 7<i class="check">&#10003;</i> </strong>
+                            <span>Apply</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flow row mb-3">
+                    <div class="col">
+                        <div class="item active">
+                            <div class="blue">
+                                <strong>Close the loop</strong>
+                                <span>This indicator module provides insights on resource use efficiency.</span>
+                            </div>
+                            <ul class="shadow">
+                                <li><em class="check">&#10003;</em> % circular inflow</li>
+                                <li><em class="check">&#10003;</em> % circular outflow</li>
+                                <li><em class="check">&#10003;</em> % energy</li>
+                            </ul>
+                        </div>
+                        <div class="item" v-bind:class="{ active: content.mainPage.optimizeTheLoop }">
+                            <div class="blue">
+                                <strong>Optimize the loop <label class="slide"><em></em></label> </strong>
+                                <span>This indicator module provides insights on resource use efficiency.</span>
+                            </div>
+                            <ul class="shadow">
+                                <li><em class="check">&#10003;</em> % critical materials</li>
+                                <li><em class="check">&#10003;</em> % recovery type</li>
+                            </ul>
+                        </div>
+                        <div class="item" v-bind:class="{ active: content.mainPage.valueTheLoop }">
+                            <div class="blue">
+                                <strong>Value the loop <label class="slide"><em></em></label> </strong>
+                                <span>This indicator module illustrates the added business value of your company’s circular
+                                material
+                                flows.</span>
+                            </div>
+                            <ul class="shadow">
+                                <li><em class="check">&#10003;</em> Circular Material Productivity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="row">
-                <!-- <div class="col">
-                <div class="shadow item priorit">
-                    <strong>{{priorityInflow.text}}</strong>
-                    <ul class="list">
-                        <li v-for="(item, index) in priorityInflow.list" :key="item.name"> <b>{{ index +1 }}. {{item.name}}</b> {{item.value}} kg. </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col">
-                <div class="shadow item priorit">
-                    <strong>{{priorityOutflow.text}}</strong>
-                    <ul class="list">
-                        <li v-for="(item, index) in priorityOutflow.list" :key="item.name"> <b>{{ index +1 }}. {{item.name}}</b> {{item.value}} kg. </li>
-                    </ul>
-                </div>
-            </div> -->
-                <div class="col">
-                    <div class="shadow item note">
-                        <strong>{{mainPage.excludedText.head}}</strong>
-                        <span>{{mainPage.excludedText.text}}</span>
+                <div class="row" v-if="content.mainPage.excludedText.text">
+                    <div class="col">
+                        <div class="shadow item note">
+                            <strong>{{content.mainPage.excludedText.head}}</strong>
+                            <span>{{content.mainPage.excludedText.text}}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <h2>Your circular performance</h2>
-            <div class="info-box item">
+                <h2>Your circular performance</h2>
+                <div class="info-box item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="info-icon">&#8520;</div>
+                                </div>
+                                <div class="col-11">
+                                    <span>{{content.mainPage.performanceNote1}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <span>{{content.mainPage.performanceNote2}}</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="info-icon">&#8520;</div>
-                            </div>
-                            <div class="col-11">
-                                <span>{{mainPage.performanceNote1}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <span>{{mainPage.performanceNote2}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="clearfix item shadow" style="overflow: hidden;">
-                        <div class="sankey" id="unit-circularity-chart" data-inflow="50" data-outflow="50"></div>
-                        <div class="row">
-                            <div class="col-10 offset-1">
-                                <span style="float: left;">Total mass of inflow <b>{{mainPage.sankey.totalInflow}} kg</b></span>
-                                <span style="float: right;">Total mass of outflow <b>{{mainPage.sankey.totalOutflow}} kg</b></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="info-box item" v-if="mainPage.performanceNote3">
-                <div class="info-icon">&#8520;</div>
-                <span>{{mainPage.performanceNote3}}</span>
-            </div>
-        </div>
-        <div id="step2" class="page" v-if="mainPage.steps.step2">
-            <h2>Inflow details</h2>
-            <div class="info-box item">
-                <div class="info-icon">&#8520;</div>
-                <span>{{inflowDetails.inflowDetailNote}}</span>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Breakdown of mass</strong>
-                        <div class="tower-chart">
-                            <div class="row ci" :style="{ height: 20 + item.value + 'px' }" v-for="item in inflowDetails.BreakdownOfMass">
-                                <div class="col-9">
-                                    <div>{{item.name}}</div>
-                                </div>
-                                <div class="col-3">
-                                    <strong>{{item.value}}%</strong>
-                                    <span v-if="item.weight">{{item.weight}}kg</span>
+                        <div class="clearfix item shadow" style="overflow: hidden;">
+                            <div class="sankey" id="unit-circularity-chart" data-inflow="50" data-outflow="50"></div>
+                            <div class="row">
+                                <div class="col-10 offset-1">
+                                    <span style="float: left;">Total mass of inflow
+                                    <b>{{content.mainPage.sankey.totalInflow}} kg</b></span>
+                                    <span style="float: right;">Total mass of outflow
+                                    <b>{{content.mainPage.sankey.totalOutflow}} kg</b></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Largest inflow</strong>
-                        <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.LargestInflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 12.5 + i.value / 2 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Most circular inflow</strong>
-                        <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.MostCircularInflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 12.5 + i.value / 2 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Most linear inflow</strong>
-                        <div class="chart-list">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in inflowDetails.MostLinearInflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 12.5 + i.value / 2 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <br>
+                <div class="info-box item" v-if="content.mainPage.performanceNote3">
+                    <div class="info-icon">&#8520;</div>
+                    <span>{{content.mainPage.performanceNote3}}</span>
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <!-- <div class="col">
-                <div class="item shadow">
-                    <strong>Critical Inflow</strong>
-                    <div class="otl">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{inflowDetails.criticalInflow.massInflow}} Kg</strong></div>
-                                <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{inflowDetails.criticalInflow.totalInflow}} Kg</strong></div>
-                            </div>
-
-                            <div class="col-3" style="position: relative;">
-                                <div class="defult-value"><strong>X 100</strong></div>
-                                <div class="percent-value">{{inflowDetails.criticalInflow.percent}}%</div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="step2" class="page" v-if="content.mainPage.steps.step2">
+                <h2>Inflow details</h2>
+                <div class="info-box item">
+                    <div class="info-icon">&#8520;</div>
+                    <span>{{content.inflowDetails.inflowDetailNote}}</span>
                 </div>
-            </div> -->
-                <div class="col">
-                    <div class="info-box item">
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="info-icon">&#8520;</div>
-                            </div>
-                            <div class="col-10"> <span>{{inflowDetails.inflowDetailNote}}</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step3" class="page" v-if="mainPage.steps.step3">
-            <h2>Outflow details</h2>
-            <div class="info-box item">
                 <div class="row mb-3">
                     <div class="col">
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="info-icon">&#8520;</div>
-                            </div>
-                            <div class="col-11">
-                                <span>{{outflowDetails.note1}}</span>
+                        <div class="item shadow">
+                            <strong>Breakdown of mass</strong>
+                            <div class="tower-chart">
+                                <div class="row ci" :style="{ height: 20 + item.value + 'px' }" v-for="item in content.inflowDetails.breakDownOfMass">
+                                    <div class="col-9">
+                                        <div>{{item.name}}</div>
+                                    </div>
+                                    <div class="col-3">
+                                        <strong>{{item.value}}%</strong>
+                                        <span v-if="item.weight">{{item.weight}}kg</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <span>{{outflowDetails.note2}}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Breakdown of mass</strong>
-                        <div class="bom-box">
-
-                            <div class="left">
-                                <div class="chart-item turquoise-left" :style="{ height: 50 + outflowDetails.bom.recoveryPotentialPercent + 'px' }">
-                                    <span>Recovery potential</span>
-                                    <span> <b> {{outflowDetails.bom.recoveryPotentialPercent}}%</b></span>
-                                </div>
-                                <div class="chart-item green-left" :style="{ height: 50 + outflowDetails.bom.linearOutflowPercent + 'px' }">
-                                    <span>Linear outflow</span>
-                                    <span><b> {{outflowDetails.bom.linearOutflowPercent}}%</b></span>
-                                </div>
-                            </div>
-                            <div class="line-left" :style="{ top: 50 + outflowDetails.bom.recoveryPotentialPercent + 'px' }"></div>
-                            <div class="middle-line">
-                                <div class="top " :style="{ height: 50 + outflowDetails.bom.recoveryPotentialPercent + 'px' }"><span class="tower-text">Actual Recovery %</span></div>
-                                <div class="bottom" :style="{ height: 50 + outflowDetails.bom.linearOutflowPercent + 'px' }"></div>
-                            </div>
-                            <div class="left">
-                                <div class="chart-item turquoise-right" :style="{ height: 50 + outflowDetails.bom.circularOutflowPercent + 'px' }">
-                                    <span>Circular Outflow</span>
-                                    <span><b> {{outflowDetails.bom.circularOutflowPercent}}%</b></span>
-                                </div>
-                                <div class="chart-item green-right" :style="{ height: 50 + outflowDetails.bom.linearOutflowPercent2  + 'px' }">
-                                    <span>Linear Outflow</span>
-                                    <span><b> {{outflowDetails.bom.linearOutflowPercent2}}%</b></span>
+                        <div class="item shadow">
+                            <strong>Largest inflow</strong>
+                            <div class="chart-list">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.inflowDetails.largestInflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.weight}}
+                                        kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 12.5 + i.value / 2 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Largest outflow</strong>
-                        <div class="chart-list triple">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in outflowDetails.largestOutflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Most circular inflow</strong>
+                            <div class="chart-list">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.inflowDetails.mostCircularInflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.weight}}
+                                        kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 12.5 + i.value / 2 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Most linear inflow</strong>
+                            <div class="chart-list">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.inflowDetails.mostLinearInflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}}
+                                        kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 12.5 + i.value / 2 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Most circular outflow </strong>
-                        <div class="chart-list triple">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in outflowDetails.mostCircularOutflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Most linear outflow</strong>
-                        <div class="chart-list triple">
-                            <div class="row" style="padding: 3px 0;" v-for="(item , index) in outflowDetails.mostLinearOutflow">
-                                <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
-                                <div class="col-8">
-                                    <ul>
-                                        <li v-for="i in item.percent" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
-                                            <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="info-box item">
+                            <div class="info-icon">&#8520;</div> <span>{{content.inflowDetails.inflowDetailNote}}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="item shadow pie-box mb-3">
+            <div id="step3" class="page" v-if="content.mainPage.steps.step3">
+                <h2>Outflow details</h2>
+                <div class="info-box item">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="info-icon">&#8520;</div>
+                            <span>{{content.outflowDetails.note1}}</span>
+                            <br>
+                            <span style="margin-bottom: -10px;">{{content.outflowDetails.note2}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col clearfix">
+                        <div class="item shadow">
+                            <strong>Breakdown of mass</strong>
+                            <div class="bom-box">
+                                <div class="left">
+                                    <div class="chart-item turquoise-left" :style="{ height: 50 + content.outflowDetails.bom.recoveryPotentialPercentage + 'px' }">
+                                        <span>Recovery potential</span>
+                                        <span> <b> {{content.outflowDetails.bom.recoveryPotentialPercentage}}%</b></span>
+                                    </div>
+                                    <div class="chart-item green-left" :style="{ height: 50 + content.outflowDetails.bom.linearOutflowPercent + 'px' }">
+                                        <span>Linear outflow</span>
+                                        <span><b> {{content.outflowDetails.bom.linearOutflowPercent}}%</b></span>
+                                    </div>
+                                </div>
+                                <div class="line-left" :style="{ top: 50 + content.outflowDetails.bom.recoveryPotentialPercentage + 'px' }"></div>
+                                <div class="middle-line">
+                                    <div class="top " :style="{ height: 50 + content.outflowDetails.bom.recoveryPotentialPercentage + 'px' }"><span class="tower-text">Actual Recovery %</span></div>
+                                    <div class="bottom" :style="{ height: 50 + content.outflowDetails.bom.linearOutflowPercent + 'px' }"></div>
+                                </div>
+                                <div class="left">
+                                    <div class="chart-item turquoise-right" :style="{ height: 50 + content.outflowDetails.bom.circularOutflowPercent + 'px' }">
+                                        <span>Circular Outflow</span>
+                                        <span><b> {{content.outflowDetails.bom.circularOutflowPercent}}%</b></span>
+                                    </div>
+                                    <div class="chart-item green-right" :style="{ height: 50 + content.outflowDetails.bom.linearOutflowPercent2  + 'px' }">
+                                        <span>Linear Outflow</span>
+                                        <span><b> {{content.outflowDetails.bom.linearOutflowPercent2}}%</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Largest outflow</strong>
+                            <div class="chart-list triple">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.outflowDetails.largestOutflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Most circular outflow </strong>
+                            <div class="chart-list triple">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.outflowDetails.mostCircularOutflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Most linear outflow</strong>
+                            <div class="chart-list triple">
+                                <div class="row" style="padding: 3px 0;" v-for="(item , index) in content.outflowDetails.mostLinearOutflow">
+                                    <div class="col-4"><strong>{{index + 1}}. {{item.name}}</strong> <span>{{item.value}} kg</span> </div>
+                                    <div class="col-8">
+                                        <ul>
+                                            <li v-for="i in item.series" :style="{ width: 10 + i.value / 100 * 80 + '%' }">
+                                                <strong>{{i.name}}</strong> <span>{{i.value}}%</span> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item shadow clearfix pie-box mb-3">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong>Recovery Type</strong>
+                            <div class="pie-table">
+                                <div v-for="(item , index) in content.outflowDetails.recoveryChart">
+                                    <span>{{item.name}}</span>
+                                    <strong>{{item.value}} Kg</strong>
+                                    <b v-if="index + 1 !== content.outflowDetails.recoveryChart.length"> +</b>
+                                    <b v-else> &nbsp; </b>
+                                </div>
+                                <div class="total"><span>Total mass (in KG)</span> <strong>{{content.outflowDetails.recoveryTypeTotalMass}} KG</strong></div>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <figure class="highcharts-figure">
+                                <!-- <div id="container"></div> -->
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="step4"></div>
+            <div class="page" v-if="content.mainPage.steps.step4">
+                <h2>Optimize the loop</h2>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Critical Inflow</strong>
+                            <div class="otl">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{content.inflowDetails.criticalInflow.massInflow}} Kg</strong></div>
+                                        <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{content.inflowDetails.criticalInflow.totalInflow}} Kg</strong></div>
+                                    </div>
+
+                                    <div class="col-3" style="position: relative;">
+                                        <div class="defult-value"><strong>X 100</strong></div>
+                                        <div class="percent-value">{{content.inflowDetails.criticalInflow.percent}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item shadow mb-3" style="padding-bottom: 0;">
+                    <strong>Critical Materials</strong>
+                    <table class="table mt-3">
+                        <thead>
+                            <tr style="font-size: 9px; text-align: center;">
+                                <th scope="col" style="width: 30%; text-align: left">NAME</th>
+                                <th scope="col">MASS(Kg)</th>
+                                <th scope="col">Virgin Renewable(%)</th>
+                                <th scope="col">Non-Virgin Renewable(%)</th>
+                                <th scope="col">Virgin Non-renewable(%)</th>
+                                <th scope="col">Non-virgin Non-renewable(%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-size: 9px; text-align: center;" v-for="item in content.optimizeTheLoop.criticalMaterials">
+                                <th style="width: 30%; text-align: left; position: relative;"> <span v-if="item.critical" class="critical">CRITICAL</span> <span class="focus-flow" v-if="item.focusFlow">FOCUS FLOW</span> {{item.name}}</th>
+                                <td>{{item.mass}}Kg</td>
+                                <td>{{item.virginRenewable}}</td>
+                                <td>{{item.nonVirginRenewable}}</td>
+                                <td>{{item.virginNonRenewable}}</td>
+                                <td>{{item.nonVirginNonRenewable}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        <div class="item shadow">
+                            <strong>Circular Material Productivity</strong>
+                            <div class="otl">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="line clearfix"><span>Revenue</span><strong>{{content.optimizeTheLoop.circularMaterialProductivity.revenue}} €</strong></div>
+                                        <div class="line clearfix"><span>Total mass of linear inflow</span><strong>{{content.optimizeTheLoop.circularMaterialProductivity.totalMass}} Kg</strong></div>
+                                    </div>
+
+                                    <div class="col-3" style="position: relative;">
+                                        <div class="defult-value"><strong>X 100</strong></div>
+                                        <div class="percent-value">{{content.optimizeTheLoop.circularMaterialProductivity.percent}} <small>€/Kg</small> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="item shadow">
+                            <strong>Renewable Energy </strong>
+                            <div class="otl">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="line clearfix"><span>Renewable Energy </span><strong>{{content.optimizeTheLoop.renewableEnergy.renewable}} kWh</strong></div>
+                                        <div class="line clearfix"><span>Total Energy Consumption: </span><strong>{{content.optimizeTheLoop.renewableEnergy.totalEnergy}} kWh</strong></div>
+                                    </div>
+
+                                    <div class="col-3" style="position: relative;">
+                                        <div class="defult-value"><strong>X 100</strong></div>
+                                        <div class="percent-value">{{content.optimizeTheLoop.renewableEnergy.percent}}% </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step5" class="page" v-if="content.mainPage.steps.step5">
+                <h2>Step 5</h2>
+                <div class="item shadow" style="padding-bottom: 0;">
+                    <strong>inflow analysis</strong>
+                    <table class="table mt-2">
+                        <thead>
+                            <tr style="font-size: 9px; text-align: center;">
+                                <th scope="col" style="width: 40%; text-align: left">NAME</th>
+                                <th style=" text-align: left;" scope="col">MASS(Kg)</th>
+                                <th style=" text-align: left;" scope="col">Linear Inflow</th>
+                                <th scope="col">Impact on total circular inflow</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-size: 9px; text-align: center;" v-for="item in content.step5.inflowAnalysis">
+                                <th style="width: 40%; text-align: left;">{{item.name}}</th>
+                                <td style=" text-align: left;"><label>{{item.mass}} </label> = <b> {{item.massResult}}  Kg</b></td>
+                                <td style=" text-align: left;"><label>{{item.linearInflow}} </label> = <b> {{item.linearInflowResult}}  Kg</b></td>
+                                <td><b>{{item.total}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-box item" v-if="content.step5.inflowNote">
+                    <div class="info-icon">&#8520;</div>
+                    <span>{{content.step5.inflowNote}}</span>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Why is our circular inflow {{content.step5.whyCircularInflowValue}}% ?</strong>
+                            <span style="font-size: 10px;">{{content.step5.whyCircularInflowAnswer}}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Is it higher or lower than expected?</strong>
+                            <span style="font-size: 10px; margin-bottom: 5px;">{{content.step5.expectedInflowAnswer}}</span>
+                            <strong>Why</strong>
+                            <span style="font-size: 10px;">{{content.step5.expectedInflowWhyAnswer}}</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="item shadow" style="padding-bottom: 0;">
+                    <strong>outflow analysis</strong>
+                    <table class="table mt-2">
+                        <thead>
+                            <tr style="font-size: 9px; text-align: center;">
+                                <th scope="col" style="width: 30%; text-align: left">NAME</th>
+                                <th style=" text-align: left;" scope="col">MASS(Kg)</th>
+                                <th style=" text-align: left;" scope="col">Recovery potential</th>
+                                <th style=" text-align: left;" scope="col">Actual recovery (%)</th>
+                                <th scope="col">Impact on total circular outflow</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-size: 9px; text-align: center;" v-for="item in content.step5.outflowAnalysis">
+                                <th style="width: 30%; text-align: left;">{{item.name}}</th>
+                                <td style=" text-align: left;"><label>{{item.mass}} </label> = <b> {{item.massResult}}  Kg</b></td>
+                                <td style=" text-align: left;"><label>{{item.recoveryPotential}} </label> = <b> {{item.recoveryPotentialResult}}  Kg</b></td>
+                                <td style=" text-align: left;"><label>{{item.actualRecovery}} </label> = <b> {{item.actualRecoveryResult}}  Kg</b></td>
+                                <td><b>{{item.total}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-box item" v-if="content.step5.inflowNote">
+                    <div class="info-icon">&#8520;</div>
+                    <span>{{content.step5.outflowNote}}</span>
+                </div>
+
                 <div class="row">
-                    <div class="col-5">
-                        <strong>Recovery Type</strong>
-                        <div class="pie-table">
-                            <div v-for="(item , index) in outflowDetails.recoveryType">
-                                <span>{{item.name}}</span>
-                                <strong>{{item.value}} Kg</strong>
-                                <b v-if="index + 1 !== outflowDetails.recoveryType.length"> +</b>
-                                <b v-else> &nbsp; </b>
-                            </div>
-                            <div class="total"><span>Total mass (in KG)</span> <strong>{{outflowDetails.recoveryTypeTotalMass}} KG</strong></div>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Why is our circular outflow {{content.step5.whyCircularOutflowValue}}% ?</strong>
+                            <span style="font-size: 10px;">{{content.step5.whyCircularOutflowAnswer}}</span>
                         </div>
                     </div>
-                    <div class="col-7">
-                        <figure class="highcharts-figure">
-                            <div id="container"></div>
-                        </figure>
+                    <div class="col">
+                        <div class="item shadow">
+                            <strong>Is it higher or lower than expected?</strong>
+                            <span style="font-size: 10px;  margin-bottom: 5px;">{{content.step5.expectedOutflowAnswer}}</span>
+                            <strong>Why</strong>
+                            <span style="font-size: 10px;">{{content.step5.expectedOutflowWhyAnswer}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step6" v-if="content.mainPage.steps.step6">
+                <div class="page" v-if="content.mainPage.steps.step6Inflow">
+                    <h2>Step 6 - Inflow</h2>
+                    <div class="item shadow mt-3">
+                        <strong>Inflow risks</strong>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Market</label>
+                                    <span>{{content.step6.inflow.market}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.marketThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.marketVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Operational</label>
+                                    <span>{{content.step6.inflow.operational}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.operationalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.operationalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Business</label>
+                                    <span>{{content.step6.inflow.business}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.businessThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.businessVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Legal</label>
+                                    <span>{{content.step6.inflow.legal}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.legalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.inflow.legalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow item mt-3 ">
+                        <div class="row ">
+                            <div class="col-12 ">
+                                <strong>Inflow opportunities</strong>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Market</label>
+                                    <span>{{content.step6.inflow.opportunitiesMarket}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Operational</label>
+                                    <span>{{content.step6.inflow.opportunitiesOperational}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Business</label>
+                                    <span>{{content.step6.inflow.opportunitiesBusiness}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Legal</label>
+                                    <span>{{content.step6.inflow.opportunitiesLegal}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" v-if="content.mainPage.steps.step6Outflow">
+                    <h2>Step 6 - Outflow</h2>
+                    <div class="item shadow mt-3">
+                        <strong>Outflow risks</strong>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Market</label>
+                                    <span>{{content.step6.outflow.market}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.marketThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.marketVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Operational</label>
+                                    <span>{{content.step6.outflow.operational}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.operationalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.operationalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Business</label>
+                                    <span>{{content.step6.outflow.business}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.businessThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.businessVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Legal</label>
+                                    <span>{{content.step6.outflow.legal}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.legalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.outflow.legalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow item mt-3 ">
+                        <div class="row ">
+                            <div class="col-12 ">
+                                <strong>Outflow opportunities</strong>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Market</label>
+                                    <span>{{content.step6.outflow.opportunitiesMarket}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Operational</label>
+                                    <span>{{content.step6.outflow.opportunitiesOperational}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Business</label>
+                                    <span>{{content.step6.outflow.opportunitiesBusiness}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Legal</label>
+                                    <span>{{content.step6.outflow.opportunitiesLegal}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" v-if="content.mainPage.steps.step6Business">
+                    <h2>Step 6 - Energy</h2>
+                    <div class="item shadow mt-3">
+                        <strong>Energy risks</strong>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Market</label>
+                                    <span>{{content.step6.energy.market}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.marketThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.marketVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Operational</label>
+                                    <span>{{content.step6.energy.operational}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.operationalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.operationalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Business</label>
+                                    <span>{{content.step6.energy.business}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.businessThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.businessVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Legal</label>
+                                    <span>{{content.step6.energy.legal}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.legalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.energy.legalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow item mt-3 ">
+                        <div class="row ">
+                            <div class="col-12 ">
+                                <strong>Energy opportunities</strong>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Market</label>
+                                    <span>{{content.step6.energy.opportunitiesMarket}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Operational</label>
+                                    <span>{{content.step6.energy.opportunitiesOperational}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Business</label>
+                                    <span>{{content.step6.energy.opportunitiesBusiness}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Legal</label>
+                                    <span>{{content.step6.energy.opportunitiesLegal}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page" v-if="content.mainPage.steps.step6Strategy">
+                    <h2>Step 6 - Critical materials</h2>
+                    <div class="item shadow mt-3">
+                        <strong>Critical materials risks</strong>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Market</label>
+                                    <span>{{content.step6.critical.market}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.marketThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.marketVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="question">
+                                    <label class="big">Operational</label>
+                                    <span>{{content.step6.critical.operational}}</span>
+                                    <div class="row mt-1">
+                                        <div class="col-6">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.operationalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.operationalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Business</label>
+                                    <span>{{content.step6.critical.business}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.businessThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.businessVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big ">Legal</label>
+                                    <span>{{content.step6.critical.legal}}</span>
+                                    <div class="row mt-1 ">
+                                        <div class="col-6 ">
+                                            <label>THREAT</label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.legalThreat } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 last ">
+                                            <label>VULNERABILITY </label>
+                                            <div class="pagination2 shadow ">
+                                                <span class="page-item2" v-bind:class="{ active: index + 1== content.step6.critical.legalVulnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow item mt-3 ">
+                        <div class="row ">
+                            <div class="col-12 ">
+                                <strong>Critical materials opportunities</strong>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Market</label>
+                                    <span>{{content.step6.critical.opportunitiesMarket}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Operational</label>
+                                    <span>{{content.step6.critical.opportunitiesOperational}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 ">
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Business</label>
+                                    <span>{{content.step6.critical.opportunitiesBusiness}}</span>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="question ">
+                                    <label class="big mb-1 ">Legal</label>
+                                    <span>{{content.step6.critical.opportunitiesLegal}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
 
-        </div>
-        <div id="step4"></div>
-        <div class="page" v-if="mainPage.steps.step4">
-            <h2>Optimize the loop</h2>
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Critical Inflow</strong>
-                        <div class="otl">
+
+            <div id="step7"></div>
+            <div class="page " v-if="content.mainPage.steps.step7" v-for=" (item , index) in content.step7.targets">
+                <h2>S.M.A.R.T Targets = <em>{{index  + 1}}</em></h2>
+                <strong>Formulate the targets </strong>
+                <div class="item shadow mt-3">
+                    <div class="smartTarget clearfix">
+                        <div class="item">
+                            <em>{{index  + 1}}</em>
+                            <span>{{item.text}}</span>
+                        </div>
+                        <div class="child">
+                            <strong>Define what needs to happen </strong>
+                            <div class="item" v-for=" (what , a) in item.what">
+                                <em>{{alphabet[a]}}</em>
+                                <span>{{what.whatItem}}</span>
+                            </div>
+                            <strong>Define when it needs to be happen </strong>
+                            <div class="item" v-for=" (when , b) in item.when">
+                                <em>{{alphabet[b]}}</em>
+                                <span>{{when.whenItem}}</span>
+                            </div>
+                            <strong>Define who needs to take action </strong>
+                            <div class="item" v-for=" (who , c) in item.who">
+                                <em>{{alphabet[c]}}</em>
+                                <span>{{who.whoItem}}</span>
+                            </div>
                             <div class="row">
-                                <div class="col-8">
-                                    <div class="line clearfix"><span>Mass of inflow defined as critical (in KG)</span><strong>{{inflowDetails.criticalInflow.massInflow}} Kg</strong></div>
-                                    <div class="line clearfix"><span>Total mass of linear inflow (in KG)</span><strong>{{inflowDetails.criticalInflow.totalInflow}} Kg</strong></div>
-                                </div>
-
-                                <div class="col-3" style="position: relative;">
-                                    <div class="defult-value"><strong>X 100</strong></div>
-                                    <div class="percent-value">{{inflowDetails.criticalInflow.percent}}%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item shadow mb-3" style="padding-bottom: 0;">
-                <strong>Critical Materials</strong>
-                <table class="table mt-3">
-                    <thead>
-                        <tr style="font-size: 9px; text-align: center;">
-                            <th scope="col" style="width: 30%; text-align: left">NAME</th>
-                            <th scope="col">MASS(Kg)</th>
-                            <th scope="col">Virgin Renewable(%)</th>
-                            <th scope="col">Non-Virgin Renewable(%)</th>
-                            <th scope="col">Virgin Non-renewable(%)</th>
-                            <th scope="col">Non-virgin Non-renewable(%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="font-size: 9px; text-align: center;" v-for="item in optimizeTheLoop.criticalMaterials">
-                            <th style="width: 30%; text-align: left; position: relative;"> <span v-if="item.critical" class="critical">CRITICAL</span> <span class="focus-flow" v-if="item.focusFlow">FOCUS FLOW</span> {{item.name}}</th>
-                            <td>{{item.mass}}Kg</td>
-                            <td>{{item.virginRenewable}}</td>
-                            <td>{{item.nonVirginRenewable}}</td>
-                            <td>{{item.virginNonRenewable}}</td>
-                            <td>{{item.nonVirginNonRenewable}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Circular Material Productivity</strong>
-                        <div class="otl">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="line clearfix"><span>Revenue</span><strong>{{optimizeTheLoop.circularMaterialProductivity.revenue}} €</strong></div>
-                                    <div class="line clearfix"><span>Total mass of linear inflow</span><strong>{{optimizeTheLoop.circularMaterialProductivity.totalMass}} Kg</strong></div>
-                                </div>
-
-                                <div class="col-3" style="position: relative;">
-                                    <div class="defult-value"><strong>X 100</strong></div>
-                                    <div class="percent-value">{{optimizeTheLoop.circularMaterialProductivity.percent}} <small>€/Kg</small> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Renewable Energy </strong>
-                        <div class="otl">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="line clearfix"><span>Renewable Energy </span><strong>{{optimizeTheLoop.renewableEnergy.renewable}} kWh</strong></div>
-                                    <div class="line clearfix"><span>Total Energy Consumption: </span><strong>{{optimizeTheLoop.renewableEnergy.totalEnergy}} kWh</strong></div>
-                                </div>
-
-                                <div class="col-3" style="position: relative;">
-                                    <div class="defult-value"><strong>X 100</strong></div>
-                                    <div class="percent-value">{{optimizeTheLoop.renewableEnergy.percent}}% </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step5" class="page" v-if="mainPage.steps.step5">
-            <h2>Step 5</h2>
-            <div class="item shadow" style="padding-bottom: 0;">
-                <strong>inflow analysis</strong>
-                <table class="table mt-2">
-                    <thead>
-                        <tr style="font-size: 9px; text-align: center;">
-                            <th scope="col" style="width: 40%; text-align: left">NAME</th>
-                            <th style=" text-align: left;" scope="col">MASS(Kg)</th>
-                            <th style=" text-align: left;" scope="col">Linear Inflow</th>
-                            <th scope="col">Impact on total circular inflow</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="font-size: 9px; text-align: center;" v-for="item in step5.inflowAnalaysis">
-                            <th style="width: 40%; text-align: left;">{{item.name}}</th>
-                            <td style=" text-align: left;"><label>{{item.mass}} </label> = <b> {{item.massResult}}  Kg</b></td>
-                            <td style=" text-align: left;"><label>{{item.linearInflow}} </label> = <b> {{item.linearInflowResult}}  Kg</b></td>
-                            <td><b>{{item.total}}</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="info-box item" v-if="step5.inflowNote">
-                <div class="info-icon">&#8520;</div>
-                <span>{{step5.inflowNote}}</span>
-            </div>
-
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Why is our circular inflow {{step5.whyCircularInflowValue}}% ?</strong>
-                        <span style="font-size: 10px;">{{step5.whyCircularInflowAnswer}}</span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Is it higher or lower than expected?</strong>
-                        <span style="font-size: 10px; margin-bottom: 5px;">{{step5.expectedInflowAnswer}}</span>
-                        <strong>Why</strong>
-                        <span style="font-size: 10px;">{{step5.expectedInflowWhyAnswer}}</span>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="item shadow" style="padding-bottom: 0;">
-                <strong>outflow analysis</strong>
-                <table class="table mt-2">
-                    <thead>
-                        <tr style="font-size: 9px; text-align: center;">
-                            <th scope="col" style="width: 30%; text-align: left">NAME</th>
-                            <th style=" text-align: left;" scope="col">MASS(Kg)</th>
-                            <th style=" text-align: left;" scope="col">Recovery potential</th>
-                            <th style=" text-align: left;" scope="col">Actual recovery (%)</th>
-                            <th scope="col">Impact on total circular outflow</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="font-size: 9px; text-align: center;" v-for="item in step5.outflowAnalaysis">
-                            <th style="width: 30%; text-align: left;">{{item.name}}</th>
-                            <td style=" text-align: left;"><label>{{item.mass}} </label> = <b> {{item.massResult}}  Kg</b></td>
-                            <td style=" text-align: left;"><label>{{item.recoveryPotential}} </label> = <b> {{item.recoveryPotentialResult}}  Kg</b></td>
-                            <td style=" text-align: left;"><label>{{item.actualRecovery}} </label> = <b> {{item.actualRecoveryResult}}  Kg</b></td>
-                            <td><b>{{item.total}}</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="info-box item" v-if="step5.inflowNote">
-                <div class="info-icon">&#8520;</div>
-                <span>{{step5.outflowNote}}</span>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Why is our circular outflow {{step5.whyCircularOutflowValue}}% ?</strong>
-                        <span style="font-size: 10px;">{{step5.whyCircularOutflowAnswer}}</span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="item shadow">
-                        <strong>Is it higher or lower than expected?</strong>
-                        <span style="font-size: 10px;  margin-bottom: 5px;">{{step5.expectedOutflowAnswer}}</span>
-                        <strong>Why</strong>
-                        <span style="font-size: 10px;">{{step5.expectedOutflowWhyAnswer}}</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div id="step6" class="page" v-if="mainPage.steps.step6">
-            <h2>Step 6 - Inflow</h2>
-            <div class="item shadow mt-3">
-                <strong>Inflow risks</strong>
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Market</label>
-                            <span>{{step6.inflowRisks.market.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.market.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
+                                <div class="col">
+                                    <strong>Departments to involve </strong>
+                                    <div class="item" v-for=" (department , index) in item.departments">
+                                        <em>{{index  + 1}}</em>
+                                        <span>{{department.departmentItem}}</span>
                                     </div>
                                 </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.market.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                <div class="col">
+                                    <strong>Other parties to consider </strong>
+                                    <div class="item" v-for=" (other , index) in item.others">
+                                        <em>{{index  + 1}}</em>
+                                        <span>{{other.otherItem}}</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Operational</label>
-                            <span>{{step6.inflowRisks.operational.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.operational.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.operational.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Business</label>
-                            <span>{{step6.inflowRisks.business.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.business.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.business.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Legal</label>
-                            <span>{{step6.inflowRisks.legal.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.legal.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.inflowRisks.legal.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
+                                <div class="col">
+                                    <strong>Considerations when executing </strong>
+                                    <div class="item" v-for=" (consideration , index) in item.considerations">
+                                        <em>{{index  + 1}}</em>
+                                        <span>{{consideration.considerationItem}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -681,484 +1120,10 @@
                     </div>
                 </div>
             </div>
-            <div class="shadow item mt-3 ">
-                <div class="row ">
-                    <div class="col-12 ">
-                        <strong>Inflow opportunities</strong>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Market</label>
-                            <span>{{step6.inflowOpportunities.market.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Operational</label>
-                            <span>{{step6.inflowOpportunities.operational.text}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Business</label>
-                            <span>{{step6.inflowOpportunities.business.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Legal</label>
-                            <span>{{step6.inflowOpportunities.legal.text}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page" v-if="mainPage.steps.step6">
-            <h2>Step 6 - Outflow</h2>
-            <div class="item shadow mt-3">
-                <strong>Outflow risks</strong>
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Market</label>
-                            <span>{{step6.outflowRisks.market.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.market.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
 
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.market.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Operational</label>
-                            <span>{{step6.outflowRisks.operational.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.operational.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.operational.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Business</label>
-                            <span>{{step6.outflowRisks.business.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.business.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.business.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Legal</label>
-                            <span>{{step6.outflowRisks.legal.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.legal.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.outflowRisks.legal.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow item mt-3 ">
-                <div class="row ">
-                    <div class="col-12 ">
-                        <strong>Outflow opportunities</strong>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Market</label>
-                            <span>{{step6.outflowOpportunities.market.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Operational</label>
-                            <span>{{step6.outflowOpportunities.operational.text}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Business</label>
-                            <span>{{step6.outflowOpportunities.business.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Legal</label>
-                            <span>{{step6.outflowOpportunities.legal.text}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page" v-if="mainPage.steps.step6">
-            <h2>Step 6 - Energy</h2>
-            <div class="item shadow mt-3">
-                <strong>Energy risks</strong>
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Market</label>
-                            <span>{{step6.energyRisks.market.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.market.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.market.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Operational</label>
-                            <span>{{step6.energyRisks.operational.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.operational.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.operational.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Business</label>
-                            <span>{{step6.energyRisks.business.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.business.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.business.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Legal</label>
-                            <span>{{step6.energyRisks.legal.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.legal.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.energyRisks.legal.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow item mt-3 ">
-                <div class="row ">
-                    <div class="col-12 ">
-                        <strong>Energy opportunities</strong>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Market</label>
-                            <span>{{step6.energyOpportunities.market.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Operational</label>
-                            <span>{{step6.energyOpportunities.operational.text}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Business</label>
-                            <span>{{step6.energyOpportunities.business.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Legal</label>
-                            <span>{{step6.energyOpportunities.legal.text}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page" v-if="step6.criticalMaterialsShow">
-            <h2>Step 6 - Critical materials</h2>
-            <div class="item shadow mt-3">
-                <strong>Critical materials risks</strong>
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Market</label>
-                            <span>{{step6.criticalRisks.market.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.market.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.market.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="question">
-                            <label class="big">Operational</label>
-                            <span>{{step6.criticalRisks.operational.text}}</span>
-                            <div class="row mt-1">
-                                <div class="col-6">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.operational.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-
-                                    </div>
-                                </div>
-                                <div class=" col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.operational.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Business</label>
-                            <span>{{step6.criticalRisks.business.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.business.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.business.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big ">Legal</label>
-                            <span>{{step6.criticalRisks.legal.text}}</span>
-                            <div class="row mt-1 ">
-                                <div class="col-6 ">
-                                    <label>THREAT</label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.legal.threat } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 last ">
-                                    <label>VULNERABILITY </label>
-                                    <div class="pagination2 shadow ">
-                                        <span class="page-item2" v-bind:class="{ active: index + 1== step6.criticalRisks.legal.valnerability } " v-for=" (i , index) in pageindex ">{{i}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow item mt-3 ">
-                <div class="row ">
-                    <div class="col-12 ">
-                        <strong>Critical materials opportunities</strong>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Market</label>
-                            <span>{{step6.criticalOpportunities.market.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Operational</label>
-                            <span>{{step6.criticalOpportunities.operational.text}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2 ">
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Business</label>
-                            <span>{{step6.criticalOpportunities.business.text}}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 ">
-                        <div class="question ">
-                            <label class="big mb-1 ">Legal</label>
-                            <span>{{step6.criticalOpportunities.legal.text}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="step7"></div>
-        <div class="page " v-if="mainPage.steps.step7" v-for=" (item , index) in step7.smartTarget">
-            <h2>S.M.A.R.T Targets = <em>{{index + 1}}</em></h2>
-            <strong>Formulate the targets </strong>
-            <div class="item shadow mt-3">
-                <div class="smartTarget clearfix">
-                    <div class="item">
-                        <em>{{index + 1}}</em>
-                        <span>{{item.text}}</span>
-                    </div>
-                    <div class="child">
-                        <strong>Define what needs to happen </strong>
-                        <div class="item" v-for=" (what , a) in item.what">
-                            <em>{{alphabet[a]}}</em>
-                            <span>{{what}}</span>
-                        </div>
-                        <strong>Define when it needs to be happen </strong>
-                        <div class="item" v-for=" (when , b) in item.when">
-                            <em>{{alphabet[b]}}</em>
-                            <span>{{when}}</span>
-                        </div>
-                        <strong>Define who needs to take action </strong>
-                        <div class="item" v-for=" (who , c) in item.who">
-                            <em>{{alphabet[c]}}</em>
-                            <span>{{who}}</span>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <strong>Departments to involve </strong>
-                                <div class="item" v-for=" (department , index) in item.departments">
-                                    <em>{{index + 1}}</em>
-                                    <span>{{department}}</span>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <strong>Other parties to consider </strong>
-                                <div class="item" v-for=" (other , index) in item.others">
-                                    <em>{{index + 1}}</em>
-                                    <span>{{other}}</span>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <strong>Considerations when executing </strong>
-                                <div class="item" v-for=" (consideration , index) in item.considerations">
-                                    <em>{{index + 1}}</em>
-                                    <span>{{consideration}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-
     <div class="download" id="target"><img src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/tree.png"> Generate Report</div>
     <div class="back-to-top-wrapper">
         <a href="#top" class="back-to-top-link" aria-label="Scroll to Top">Scroll to Top</a>
