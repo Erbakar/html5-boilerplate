@@ -1,3 +1,85 @@
+$(document).ready(function() {
+    fetch("http://test-be.circular-iq.com/api/cti/unit/1326443b-bf0f-4e52-868f-55ef26872982/reportData", {
+            headers: {
+                "x-auth-token": 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM2OTc0OTEsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzA4MjkxfQ.uMF61EZIbhdAtLIXBZ9WrNJGjUchz9OrBKYCJXTsedc',
+                "Content-Type": "application/json",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+                Connection: "keep-alive",
+                "Content-Length": "17053",
+                "Content-Type": "application/json",
+                Host: "test-be.circular-iq.com",
+                Origin: "http://dev.circular-iq.com:8080",
+                Referer: "http://dev.circular-iq.com:8080/sample-report",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36",
+            },
+            method: "GET",
+        })
+        .then((response) => {
+            console.log(response);
+            throw response.json();
+        })
+        .then((res) => {
+            console.log(res);
+        });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#target").click(function() {
+    hash = window.location.hash.substr(1);
+    arHash = hash.split("=");
+    // token = arHash[1];
+    token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDM2OTc0OTEsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzNzA4MjkxfQ.uMF61EZIbhdAtLIXBZ9WrNJGjUchz9OrBKYCJXTsedc';
+    var markup = document.getElementById("pdfContainer");
+    var parser = markup.outerHTML;
+    var data = btoa(unescape(encodeURIComponent(parser)));
+    var f = `  <img style="width: 100%;"  src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/footer.png" alt="">`;
+    var fd = window.btoa(f);
+
+    fetch("http://test-be.circular-iq.com/api/pdf/generate", {
+            headers: {
+                "x-auth-token": token,
+                "Content-Type": "application/json",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+                Connection: "keep-alive",
+                "Content-Length": "17053",
+                "Content-Type": "application/json",
+                Host: "test-be.circular-iq.com",
+                Origin: "http://dev.circular-iq.com:8080",
+                Referer: "http://dev.circular-iq.com:8080/sample-report",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36",
+            },
+            body: JSON.stringify({ footer: fd, report: data }),
+            method: "PUT",
+        })
+        .then((response) => {
+            if (response.status !== 200) {
+                throw response.json();
+            }
+            return response.arrayBuffer();
+        })
+        .then((buffer) => {
+            var blob = new Blob([buffer], { type: "application/pdf" });
+            saveAs(blob, "report.pdf");
+        });
+});
+
+
+
+
+
 new Vue({
     el: "#app",
     data: {
@@ -573,7 +655,7 @@ new Vue({
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
                 },
             },
-            criticalMaterialsShow: true,
+            criticalMaterialsShow: false,
             criticalRisks: {
                 market: {
                     text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam laboriosam officiis illum voluptatem voluptates maiores minima provident, vitae optio adipisci quaerat iusto vel, totam eum ut praesentium reiciendis! Quaerat, sapiente!',
@@ -636,6 +718,11 @@ new Vue({
     },
     methods: {
         delayedShow() {},
+
+        say: function() {
+            console.log('sdhds');
+        }
+
     },
     mounted() {
         this.delayedShow();
@@ -673,8 +760,6 @@ new Vue({
                     data: this.outflowDetails.recoveryChat,
                 }]
             });
-
-
     },
 });
 
@@ -683,50 +768,3 @@ new Vue({
 // s.setAttribute('data-outflow', 50);
 
 // console.log(s);
-
-function generateReport() {
-    hash = window.location.hash.substr(1);
-    arHash = hash.split("=");
-    // token = arHash[1];
-    token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDllZTFlOC01NzJkLTQ2MTEtYmUwMy1kN2U2MWZmZWQ1NDEiLCJpYXQiOjE2MDMzNTkyMjMsImVtYWlsIjoiZWNhZ2lyYWxAZ21haWwuY29tIiwicm9sZXMiOlsiQ29tcGFueSBhZG1pbiIsIkF1dGhvcml6ZXIiXSwiZXhwIjoxNjAzMzcwMDIzfQ.6D8mNS3ydddp5R7H3gwKrK0r9FS4tWtJAwrBjZBPtcM';
-    var markup = document.getElementById("pdfContainer");
-    var parser = markup.outerHTML;
-    var data = btoa(unescape(encodeURIComponent(parser)));
-    var f = `  <img style="width: 100%;"  src="https://s3.eu-central-1.amazonaws.com/files.dev.circular-iq.com/kadir/footer.png" alt="">`;
-    var fd = window.btoa(f);
-
-    fetch("http://test-be.circular-iq.com/api/pdf/generate", {
-            headers: {
-                "x-auth-token": token,
-                "Content-Type": "application/json",
-                "Accept-Encoding": "gzip, deflate",
-                "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
-                Connection: "keep-alive",
-                "Content-Length": "17053",
-                "Content-Type": "application/json",
-                Host: "test-be.circular-iq.com",
-                Origin: "http://dev.circular-iq.com:8080",
-                Referer: "http://dev.circular-iq.com:8080/sample-report",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36",
-            },
-            body: JSON.stringify({ footer: fd, report: data }),
-            method: "PUT",
-        })
-        .then((response) => {
-            if (response.status !== 200) {
-                throw response.json();
-            }
-            return response.arrayBuffer();
-        })
-        .then((buffer) => {
-            var blob = new Blob([buffer], { type: "application/pdf" });
-            saveAs(blob, "report.pdf");
-        });
-}
-
-
-
-function scrollTo() {
-    console.log('KAdir');
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
-}
